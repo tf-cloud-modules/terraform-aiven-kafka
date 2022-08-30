@@ -73,3 +73,39 @@ variable "karapace" {
   type        = bool
   default     = false
 }
+
+variable "custom_domain" {
+  description = "Custom domain."
+  type        = string
+  default     = ""
+}
+
+variable "ip_filter" {
+  description = "IP filter."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "kafka_connect" {
+  description = "Enable Kafka Connect service."
+  type        = string
+  default     = ""
+}
+
+variable "kafka_rest" {
+  description = "Enable Kafka-REST service."
+  type        = string
+  default     = ""
+}
+
+variable "kafka_version" {
+  description = ""
+  type        = string
+  default     = "3.2"
+}
+
+variable "schema_registry" {
+  description = "Enable Schema-Registry service."
+  type        = string
+  default     = ""
+}

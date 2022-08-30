@@ -12,6 +12,15 @@ resource "aiven_kafka" "this" {
   service_name            = var.service_name
   termination_protection  = var.termination_protection
 
+  kafka_user_config {
+    custom_domain   = var.custom_domain
+    ip_filter       = var.ip_filter
+    kafka_connect   = var.kafka_connect
+    kafka_rest      = var.kafka_rest
+    kafka_version   = var.kafka_version
+    schema_registry = var.schema_registry
+  }
+
   dynamic "tag" {
     for_each = var.tags
     content {
