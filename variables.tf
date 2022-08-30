@@ -109,3 +109,75 @@ variable "schema_registry" {
   type        = string
   default     = ""
 }
+
+variable "private_access_prometheus" {
+  description = "Allow clients to connect to prometheus with a DNS name that always resolves to the service's private IP addresses."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_kafka" {
+  description = "Allow clients to connect to kafka from the public internet for service nodes that are in a project VPC or another type of private network."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_kafka_connect" {
+  description = "Allow clients to connect to kafka_connect from the public internet for service nodes that are in a project VPC or another type of private network."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_kafka_rest" {
+  description = "Allow clients to connect to kafka_rest from the public internet for service nodes that are in a project VPC or another type of private network."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_prometheus" {
+  description = "Allow clients to connect to prometheus from the public internet for service nodes that are in a project VPC or another type of private network."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_schema_registry" {
+  description = "Allow clients to connect to schema_registry from the public internet for service nodes that are in a project VPC or another type of private network."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_jolokia" {
+  description = "Enable jolokia."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_kafka" {
+  description = "Enable kafka."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_kafka_connect" {
+  description = "Enable kafka_connect."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_kafka_rest" {
+  description = "Enable kafka_rest."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_prometheus" {
+  description = "Enable prometheus."
+  type        = bool
+  default     = false
+}
+
+variable "privatelink_schema_registry" {
+  description = "Enable schema_registry."
+  type        = bool
+  default     = false
+}

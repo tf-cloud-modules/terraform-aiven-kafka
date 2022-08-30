@@ -19,6 +19,27 @@ resource "aiven_kafka" "this" {
     kafka_rest      = var.kafka_rest
     kafka_version   = var.kafka_version
     schema_registry = var.schema_registry
+
+    public_access {
+      kafka           = var.public_access_kafka
+      kafka_connect   = var.public_access_kafka_connect
+      kafka_rest      = var.public_access_kafka_rest
+      prometheus      = var.public_access_prometheus
+      schema_registry = var.public_access_schema_registry
+    }
+
+    private_access {
+      prometheus = var.private_access_prometheus
+    }
+
+    privatelink_access {
+      jolokia         = var.privatelink_jolokia
+      kafka           = var.privatelink_kafka
+      kafka_connect   = var.privatelink_kafka_connect
+      kafka_rest      = var.privatelink_kafka_rest
+      prometheus      = var.privatelink_prometheus
+      schema_registry = var.privatelink_schema_registry
+    }
   }
 
   dynamic "tag" {
