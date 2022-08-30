@@ -434,3 +434,9 @@ variable "kafka_connect_config" {
   type        = list(any)
   default     = []
 }
+
+variable "kafka_rest_config" {
+  description = "Kafka REST configuration."
+  type        = list(any)
+  default     = []
+}

@@ -105,6 +105,18 @@ resource "aiven_kafka" "this" {
         session_timeout_ms                      = lookup(kafka_connect_config.value, "session_timeout_ms", null)
       }
     }
+
+    dynamic "kafka_rest_config" {
+      for_each = var.kafka_rest_config
+      content {
+        consumer_enable_auto_commit  = lookup(kafka_rest_config.value, "consumer_enable_auto_commit", null)
+        consumer_request_max_bytes   = lookup(kafka_rest_config.value, "consumer_request_max_bytes", null)
+        consumer_request_timeout_ms  = lookup(kafka_rest_config.value, "consumer_request_timeout_ms", null)
+        producer_acks                = lookup(kafka_rest_config.value, "producer_acks", null)
+        producer_linger_ms           = lookup(kafka_rest_config.value, "producer_linger_ms", null)
+        simpleconsumer_pool_size_max = lookup(kafka_rest_config.value, "simpleconsumer_pool_size_max", null)
+      }
+    }
   }
 
   dynamic "tag" {
