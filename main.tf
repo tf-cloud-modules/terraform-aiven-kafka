@@ -87,6 +87,24 @@ resource "aiven_kafka" "this" {
       certificate = var.kafka_authentication_methods_certificate
       sasl        = var.kafka_authentication_methods_sasl
     }
+
+    dynamic "kafka_connect_config" {
+      for_each = var.kafka_connect_config
+      content {
+        connector_client_config_override_policy = lookup(kafka_connect_config.value, "connector_client_config_override_policy", null)
+        consumer_auto_offset_reset              = lookup(kafka_connect_config.value, "consumer_auto_offset_reset", null)
+        consumer_fetch_max_bytes                = lookup(kafka_connect_config.value, "consumer_fetch_max_bytes", null)
+        consumer_isolation_level                = lookup(kafka_connect_config.value, "consumer_isolation_level", null)
+        consumer_max_partition_fetch_bytes      = lookup(kafka_connect_config.value, "consumer_max_partition_fetch_bytes", null)
+        consumer_max_poll_interval_ms           = lookup(kafka_connect_config.value, "consumer_max_poll_interval_ms", null)
+        consumer_max_poll_records               = lookup(kafka_connect_config.value, "consumer_max_poll_records", null)
+        offset_flush_interval_ms                = lookup(kafka_connect_config.value, "offset_flush_interval_ms", null)
+        offset_flush_timeout_ms                 = lookup(kafka_connect_config.value, "offset_flush_timeout_ms", null)
+        producer_compression_type               = lookup(kafka_connect_config.value, "producer_compression_type", null)
+        producer_max_request_size               = lookup(kafka_connect_config.value, "producer_max_request_size", null)
+        session_timeout_ms                      = lookup(kafka_connect_config.value, "session_timeout_ms", null)
+      }
+    }
   }
 
   dynamic "tag" {

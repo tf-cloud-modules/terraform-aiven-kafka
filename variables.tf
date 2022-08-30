@@ -428,3 +428,9 @@ variable "kafka_authentication_methods_sasl" {
   type        = string
   default     = ""
 }
+
+variable "kafka_connect_config" {
+  description = "Kafka Connect configuration values."
+  type        = list(any)
+  default     = []
+}
