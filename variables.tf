@@ -440,3 +440,9 @@ variable "kafka_rest_config" {
   type        = list(any)
   default     = []
 }
+
+variable "schema_registry_config" {
+  description = "Schema Registry configuration."
+  type        = list(any)
+  default     = []
+}

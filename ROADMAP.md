@@ -14,7 +14,7 @@ This document describes the current status of this project.
 | ✔ | [Add kafka_user_config.private_access]() ||
 | ✔ | [Add kafka_user_config.privatelink_access]() ||
 | ✔ | [Add kafka_user_config.public_access]() ||
-| ❌ | [Add kafka_user_config.schema_registry_config]() ||
+| ✔ | [Add kafka_user_config.schema_registry_config]() ||
 | ❌ | [Add examples]() ||
 | ❌ | [Add kafka_acl module]() ||
 | ❌ | [Add kafka_connect module]() ||

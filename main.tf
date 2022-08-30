@@ -117,6 +117,14 @@ resource "aiven_kafka" "this" {
         simpleconsumer_pool_size_max = lookup(kafka_rest_config.value, "simpleconsumer_pool_size_max", null)
       }
     }
+
+    dynamic "schema_registry_config" {
+      for_each = var.schema_registry_config
+      content {
+        leader_eligibility = lookup(schema_registry_config.value, "leader_eligibility", null)
+        topic_name         = lookup(schema_registry_config.value, "topic_name", null)
+      }
+    }
   }
 
   dynamic "tag" {
