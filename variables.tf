@@ -416,3 +416,15 @@ variable "transaction_state_log_segment_bytes" {
   type        = string
   default     = ""
 }
+
+variable "kafka_authentication_methods_certificate" {
+  description = "Enable certificate/SSL authentication."
+  type        = string
+  default     = ""
+}
+
+variable "kafka_authentication_methods_sasl" {
+  description = "Enable SASL authentication."
+  type        = string
+  default     = ""
+}

@@ -82,6 +82,11 @@ resource "aiven_kafka" "this" {
       transaction_remove_expired_transaction_cleanup_interval_ms = var.transaction_remove_expired_transaction_cleanup_interval_ms
       transaction_state_log_segment_bytes                        = var.transaction_state_log_segment_bytes
     }
+
+    kafka_authentication_methods {
+      certificate = var.kafka_authentication_methods_certificate
+      sasl        = var.kafka_authentication_methods_sasl
+    }
   }
 
   dynamic "tag" {
