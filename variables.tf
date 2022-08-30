@@ -181,3 +181,238 @@ variable "privatelink_schema_registry" {
   type        = bool
   default     = false
 }
+
+variable "auto_create_topics_enable" {
+  description = "auto.create.topics.enable"
+  type        = string
+  default     = ""
+}
+
+variable "compression_type" {
+  description = "compression.type"
+  type        = string
+  default     = ""
+}
+
+variable "connections_max_idle_ms" {
+  description = "connections.max.idle.ms"
+  type        = string
+  default     = ""
+}
+
+variable "default_replication_factor" {
+  description = "default.replication.factor"
+  type        = string
+  default     = ""
+}
+
+variable "group_initial_rebalance_delay_ms" {
+  description = "group.initial.rebalance.delay.ms"
+  type        = string
+  default     = ""
+}
+
+variable "group_max_session_timeout_ms" {
+  description = "group.max.session.timeout.ms"
+  type        = string
+  default     = ""
+}
+
+variable "group_min_session_timeout_ms" {
+  description = "group.min.session.timeout.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_cleaner_delete_retention_ms" {
+  description = "log.cleaner.delete.retention.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_cleaner_max_compaction_lag_ms" {
+  description = "log.cleaner.max.compaction.lag.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_cleaner_min_cleanable_ratio" {
+  description = "log.cleaner.min.cleanable.ratio"
+  type        = string
+  default     = ""
+}
+
+variable "log_cleaner_min_compaction_lag_ms" {
+  description = "log.cleaner.min.compaction.lag.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_cleanup_policy" {
+  description = "log.cleanup.policy"
+  type        = string
+  default     = ""
+}
+
+variable "log_flush_interval_messages" {
+  description = "log.flush.interval.messages"
+  type        = string
+  default     = ""
+}
+
+
+variable "log_flush_interval_ms" {
+  description = "log.flush.interval.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_index_interval_bytes" {
+  description = "log.index.interval.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "log_index_size_max_bytes" {
+  description = "log.index.size.max.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "log_message_downconversion_enable" {
+  description = "log.message.downconversion.enable"
+  type        = string
+  default     = ""
+}
+
+variable "log_message_timestamp_difference_max_ms" {
+  description = "log.message.timestamp.difference.max.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_message_timestamp_type" {
+  description = "log.message.timestamp.type"
+  type        = string
+  default     = ""
+}
+
+variable "log_preallocate" {
+  description = "log.preallocate"
+  type        = string
+  default     = ""
+}
+
+variable "log_retention_bytes" {
+  description = "log.retention.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "log_retention_hours" {
+  description = "log.retention.hours"
+  type        = string
+  default     = ""
+}
+
+variable "log_retention_ms" {
+  description = "log.retention.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_roll_jitter_ms" {
+  description = "log.roll.jitter.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_roll_ms" {
+  description = "log.roll.ms"
+  type        = string
+  default     = ""
+}
+
+variable "log_segment_bytes" {
+  description = "log.segment.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "log_segment_delete_delay_ms" {
+  description = "log.segment.delete.delay.ms"
+  type        = string
+  default     = ""
+}
+
+variable "max_connections_per_ip" {
+  description = "max.connections.per.ip"
+  type        = string
+  default     = ""
+}
+
+variable "max_incremental_fetch_session_cache_slots" {
+  description = "max.incremental.fetch.session.cache.slots"
+  type        = string
+  default     = ""
+}
+
+variable "message_max_bytes" {
+  description = "message.max.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "min_insync_replicas" {
+  description = "min.insync.replicas"
+  type        = string
+  default     = ""
+}
+
+variable "num_partitions" {
+  description = "num.partitions"
+  type        = string
+  default     = ""
+}
+
+variable "offsets_retention_minutes" {
+  description = "offsets.retention.minutes"
+  type        = string
+  default     = ""
+}
+
+variable "producer_purgatory_purge_interval_requests" {
+  description = "producer.purgatory.purge.interval.requests"
+  type        = string
+  default     = ""
+}
+
+variable "replica_fetch_max_bytes" {
+  description = "replica.fetch.max.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "replica_fetch_response_max_bytes" {
+  description = "replica.fetch.response.max.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "socket_request_max_bytes" {
+  description = "socket.request.max.bytes"
+  type        = string
+  default     = ""
+}
+
+variable "transaction_remove_expired_transaction_cleanup_interval_ms" {
+  description = "transaction.remove.expired.transaction.cleanup.interval.ms"
+  type        = string
+  default     = ""
+}
+
+variable "transaction_state_log_segment_bytes" {
+  description = "transaction.state.log.segment.bytes"
+  type        = string
+  default     = ""
+}

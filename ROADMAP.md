@@ -7,7 +7,7 @@ This document describes the current status of this project.
 | :---: | :--- | --- | 
 | ✔ | [Set up basic module features]() || 
 | ✔ | [Add kafka_user_config]() ||
-| ❌ | [Add kafka_user_config.kafka]() ||
+| ✔ | [Add kafka_user_config.kafka]() ||
 | ❌ | [Add kafka_user_config.kafka_authentication_methods]() ||
 | ❌ | [Add kafka_user_config.kafka_connect_config]() ||
 | ❌ | [Add kafka_user_config.kafka_rest_config]() ||
