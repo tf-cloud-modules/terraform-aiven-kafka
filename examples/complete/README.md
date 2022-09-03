@@ -3,6 +3,7 @@
 Configuration in this directory creates an Aiven Kafka cluster with following features:
 
 - Aiven Kafka Cluster
+- Aiven Kafka User
 
 ## Usage
 
@@ -31,6 +32,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_kafka"></a> [kafka](#module\_kafka) | ../.. | n/a |
+| <a name="module_user"></a> [user](#module\_user) | ../../modules/user | n/a |
 
 ## Resources
 

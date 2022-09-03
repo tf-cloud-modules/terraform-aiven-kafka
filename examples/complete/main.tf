@@ -9,3 +9,10 @@ module "kafka" {
     }
   ]
 }
+
+module "user" {
+  source       = "../../modules/user"
+  project      = module.kafka.project
+  service_name = module.kafka.service_name
+  username     = "test"
+}
