@@ -1,11 +1,11 @@
-# Aiven Kafka ACL Terraform module
+# Aiven Kafka User Terraform module
 
 Terraform module which creates Aiven Kafka User resources
 
 ## Usage
 
 ```hcl
-module "User" {
+module "user" {
   source        = "tf-cloud-modules/kakfa/aiven//modules/user"
   project       = "test"
   service_name  = "test"
