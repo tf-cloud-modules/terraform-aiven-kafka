@@ -78,3 +78,10 @@ module "schema" {
     }
     EOT
 }
+
+module "schema_configuration" {
+  source              = "../../modules/schema_configuration"
+  project             = module.kafka.project
+  service_name        = module.kafka.service_name
+  compatibility_level = "FORWARD"
+}

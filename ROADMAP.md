@@ -21,7 +21,7 @@ This document describes the current status of this project.
 | ✔ | [Add kafka_connector module]() ||
 | ❌ | [Add kafka_mirrormaker module]() ||
 | ✔ | [Add kafka_schema module]() ||
-| ❌ | [Add kafka_schema_configuration module]() ||
+| ✔ | [Add kafka_schema_configuration module]() ||
 | ❌ | [Add kafka_schema_registry_acl module]() ||
 | ✔ | [Add kafka_topic module]() ||
 | ✔ | [Add kafka_user module]() ||
