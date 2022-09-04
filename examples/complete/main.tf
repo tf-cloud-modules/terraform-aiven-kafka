@@ -85,3 +85,12 @@ module "schema_configuration" {
   service_name        = module.kafka.service_name
   compatibility_level = "FORWARD"
 }
+
+module "schema_registry_acl" {
+  source       = "../../modules/schema_registry_acl"
+  project      = module.kafka.project
+  service_name = module.kafka.service_name
+  permission   = "schema_registry_read"
+  resource     = "Subject:test"
+  username     = module.user.username
+}
