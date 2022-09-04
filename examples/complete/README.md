@@ -7,6 +7,7 @@ Configuration in this directory creates an Aiven Kafka cluster with following fe
 - Aiven Kafka Topic 
 - Aiven Kafka ACL
 - Aiven Kafka Connect
+- Aiven Kafka Schema
 
 ## Usage
 
@@ -37,6 +38,7 @@ No providers.
 | <a name="module_acl"></a> [acl](#module\_acl) | ../../modules/acl | n/a |
 | <a name="module_connector"></a> [connector](#module\_connector) | ../../modules/connector | n/a |
 | <a name="module_kafka"></a> [kafka](#module\_kafka) | ../.. | n/a |
+| <a name="module_schema"></a> [schema](#module\_schema) | ../../modules/schema | n/a |
 | <a name="module_topic"></a> [topic](#module\_topic) | ../../modules/topic | n/a |
 | <a name="module_user"></a> [user](#module\_user) | ../../modules/user | n/a |
 

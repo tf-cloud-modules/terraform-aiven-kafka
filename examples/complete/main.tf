@@ -1,9 +1,10 @@
 module "kafka" {
-  source        = "../.."
-  project       = "tf-cloud-modules"
-  service_name  = "test"
-  kafka_connect = true
-  plan          = "business-4"
+  source          = "../.."
+  project         = "tf-cloud-modules"
+  service_name    = "test"
+  kafka_connect   = true
+  schema_registry = true
+  plan            = "business-4"
   tags = [
     {
       key   = "env"
@@ -52,4 +53,28 @@ module "connector" {
     "connection.username" = "test"
     "connection.password" = "fakepassword"
   }
+}
+
+module "schema" {
+  source              = "../../modules/schema"
+  project             = module.kafka.project
+  service_name        = module.kafka.service_name
+  subject_name        = "kafka-schema1"
+  compatibility_level = "FORWARD"
+
+  schema = <<EOT
+    {
+       "doc": "example",
+       "fields": [{
+           "default": 5,
+           "doc": "my test number",
+           "name": "test",
+           "namespace": "test",
+           "type": "int"
+       }],
+       "name": "example",
+       "namespace": "example",
+       "type": "record"
+    }
+    EOT
 }
