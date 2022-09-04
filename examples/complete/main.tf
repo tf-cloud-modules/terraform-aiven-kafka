@@ -1,7 +1,9 @@
 module "kafka" {
-  source       = "../.."
-  project      = "tf-cloud-modules"
-  service_name = "test"
+  source        = "../.."
+  project       = "tf-cloud-modules"
+  service_name  = "test"
+  kafka_connect = true
+  plan          = "business-4"
   tags = [
     {
       key   = "env"
@@ -33,4 +35,21 @@ module "acl" {
   topic        = "test"
   permission   = "admin"
   username     = module.user.username
+}
+
+module "connector" {
+  source         = "../../modules/connector"
+  project        = module.kafka.project
+  service_name   = module.kafka.service_name
+  connector_name = "test"
+
+  config = {
+    "topics" = "test"
+    "connector.class" : "io.aiven.kafka.connect.opensearch.OpensearchSinkConnector"
+    "type.name"           = "os-connector"
+    "name"                = "test"
+    "connection.url"      = "https://url.com:9243"
+    "connection.username" = "test"
+    "connection.password" = "fakepassword"
+  }
 }
