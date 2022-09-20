@@ -107,6 +107,7 @@ No modules.
 | <a name="input_replica_fetch_response_max_bytes"></a> [replica\_fetch\_response\_max\_bytes](#input\_replica\_fetch\_response\_max\_bytes) | replica.fetch.response.max.bytes | `string` | `""` | no |
 | <a name="input_schema_registry"></a> [schema\_registry](#input\_schema\_registry) | Enable Schema-Registry service. | `string` | `""` | no |
 | <a name="input_schema_registry_config"></a> [schema\_registry\_config](#input\_schema\_registry\_config) | Schema Registry configuration. | `list(any)` | `[]` | no |
+| <a name="input_service_integrations"></a> [service\_integrations](#input\_service\_integrations) | Service integrations to specify when creating a service. | `list(any)` | `[]` | no |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | Specifies the actual name of the service. | `string` | n/a | yes |
 | <a name="input_socket_request_max_bytes"></a> [socket\_request\_max\_bytes](#input\_socket\_request\_max\_bytes) | socket.request.max.bytes | `string` | `""` | no |
 | <a name="input_static_ips"></a> [static\_ips](#input\_static\_ips) | Static IPs that are going to be associated with this service. | `list(string)` | `[]` | no |

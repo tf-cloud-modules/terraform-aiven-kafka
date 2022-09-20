@@ -6,6 +6,7 @@ This document describes the current status of this project.
 | Status | Goal | Labels | 
 | :---: | :--- | --- | 
 | ✔ | [Set up basic module features]() || 
+| ✔ | [Add service_integrations]() || 
 | ✔ | [Add kafka_user_config]() ||
 | ✔ | [Add kafka_user_config.kafka]() ||
 | ✔ | [Add kafka_user_config.kafka_authentication_methods]() ||
