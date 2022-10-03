@@ -1,6 +1,6 @@
 module "kafka" {
   source          = "../.."
-  project         = "tf-cloud-modules"
+  project         = var.project
   service_name    = "test"
   kafka_connect   = true
   schema_registry = true
