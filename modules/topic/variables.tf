@@ -178,3 +178,9 @@ variable "unclean_leader_election_enable" {
   type        = string
   default     = ""
 }
+
+variable "tags" {
+  description = "List of the topic tags."
+  type        = list(any)
+  default     = []
+}

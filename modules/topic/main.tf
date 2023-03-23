@@ -33,4 +33,12 @@ resource "aiven_kafka_topic" "this" {
     segment_ms                          = var.segment_ms
     unclean_leader_election_enable      = var.unclean_leader_election_enable
   }
+
+  dynamic "tag" {
+    for_each = var.tags
+    content {
+      key   = lookup(tag.value, "key", null)
+      value = lookup(tag.value, "value", null)
+    }
+  }
 }

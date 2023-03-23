@@ -88,14 +88,14 @@ variable "ip_filter" {
 
 variable "kafka_connect" {
   description = "Enable Kafka Connect service."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "kafka_rest" {
   description = "Enable Kafka-REST service."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "kafka_version" {
@@ -106,8 +106,8 @@ variable "kafka_version" {
 
 variable "schema_registry" {
   description = "Enable Schema-Registry service."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "private_access_prometheus" {
@@ -184,8 +184,8 @@ variable "privatelink_schema_registry" {
 
 variable "auto_create_topics_enable" {
   description = "auto.create.topics.enable"
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "compression_type" {
@@ -196,56 +196,56 @@ variable "compression_type" {
 
 variable "connections_max_idle_ms" {
   description = "connections.max.idle.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "default_replication_factor" {
   description = "default.replication.factor"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "group_initial_rebalance_delay_ms" {
   description = "group.initial.rebalance.delay.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "group_max_session_timeout_ms" {
   description = "group.max.session.timeout.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "group_min_session_timeout_ms" {
   description = "group.min.session.timeout.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_cleaner_delete_retention_ms" {
   description = "log.cleaner.delete.retention.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_cleaner_max_compaction_lag_ms" {
   description = "log.cleaner.max.compaction.lag.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_cleaner_min_cleanable_ratio" {
   description = "log.cleaner.min.cleanable.ratio"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_cleaner_min_compaction_lag_ms" {
   description = "log.cleaner.min.compaction.lag.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_cleanup_policy" {
@@ -256,39 +256,39 @@ variable "log_cleanup_policy" {
 
 variable "log_flush_interval_messages" {
   description = "log.flush.interval.messages"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 
 variable "log_flush_interval_ms" {
   description = "log.flush.interval.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_index_interval_bytes" {
   description = "log.index.interval.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_index_size_max_bytes" {
   description = "log.index.size.max.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_message_downconversion_enable" {
   description = "log.message.downconversion.enable"
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "log_message_timestamp_difference_max_ms" {
   description = "log.message.timestamp.difference.max.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_message_timestamp_type" {
@@ -299,134 +299,134 @@ variable "log_message_timestamp_type" {
 
 variable "log_preallocate" {
   description = "log.preallocate"
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "log_retention_bytes" {
   description = "log.retention.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_retention_hours" {
   description = "log.retention.hours"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_retention_ms" {
   description = "log.retention.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_roll_jitter_ms" {
   description = "log.roll.jitter.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_roll_ms" {
   description = "log.roll.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_segment_bytes" {
   description = "log.segment.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "log_segment_delete_delay_ms" {
   description = "log.segment.delete.delay.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "max_connections_per_ip" {
   description = "max.connections.per.ip"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "max_incremental_fetch_session_cache_slots" {
   description = "max.incremental.fetch.session.cache.slots"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "message_max_bytes" {
   description = "message.max.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "min_insync_replicas" {
   description = "min.insync.replicas"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "num_partitions" {
   description = "num.partitions"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "offsets_retention_minutes" {
   description = "offsets.retention.minutes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "producer_purgatory_purge_interval_requests" {
   description = "producer.purgatory.purge.interval.requests"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "replica_fetch_max_bytes" {
   description = "replica.fetch.max.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "replica_fetch_response_max_bytes" {
   description = "replica.fetch.response.max.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "socket_request_max_bytes" {
   description = "socket.request.max.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "transaction_remove_expired_transaction_cleanup_interval_ms" {
   description = "transaction.remove.expired.transaction.cleanup.interval.ms"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "transaction_state_log_segment_bytes" {
   description = "transaction.state.log.segment.bytes"
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "kafka_authentication_methods_certificate" {
   description = "Enable certificate/SSL authentication."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = true
 }
 
 variable "kafka_authentication_methods_sasl" {
   description = "Enable SASL authentication."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = false
 }
 
 variable "kafka_connect_config" {
