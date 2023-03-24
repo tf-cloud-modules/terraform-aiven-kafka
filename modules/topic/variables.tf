@@ -38,145 +38,145 @@ variable "termination_protection" {
 variable "cleanup_policy" {
   description = "cleanup.policy value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "compression_type" {
   description = "compression.type value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "delete_retention_ms" {
   description = "delete.retention.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "file_delete_delay_ms" {
   description = "file.delete.delay.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "flush_messages" {
   description = "flush.messages value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "flush_ms" {
   description = "flush.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "index_interval_bytes" {
   description = "index.interval.bytes value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "max_compaction_lag_ms" {
   description = "max.compaction.lag.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "max_message_bytes" {
   description = "max.message.bytes value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "message_downconversion_enable" {
   description = "message.downconversion.enable value."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = null
 }
 
 variable "message_format_version" {
   description = "message.format.version value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "message_timestamp_difference_max_ms" {
   description = "message.timestamp.difference.max.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "message_timestamp_type" {
   description = "message.timestamp.type value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "min_cleanable_dirty_ratio" {
   description = "min.cleanable.dirty.ratio value."
-  type        = string
-  default     = ""
+  type        = number
+  default     = null
 }
 
 variable "min_compaction_lag_ms" {
   description = "min.compaction.lag.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "min_insync_replicas" {
   description = "min.insync.replicas value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "preallocate" {
   description = "preallocate value."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = null
 }
 
 variable "retention_bytes" {
   description = "retention.bytes value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "retention_ms" {
   description = "retention.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "segment_bytes" {
   description = "segment.bytes value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "segment_index_bytes" {
   description = "segment.index.bytes value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "segment_jitter_ms" {
   description = "segment.jitter.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "segment_ms" {
   description = "segment.ms value."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "unclean_leader_election_enable" {
   description = "unclean.leader.election.enable value."
-  type        = string
-  default     = ""
+  type        = bool
+  default     = null
 }
 
 variable "tags" {

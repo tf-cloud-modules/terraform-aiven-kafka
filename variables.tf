@@ -80,12 +80,6 @@ variable "custom_domain" {
   default     = ""
 }
 
-variable "ip_filter" {
-  description = "IP filter."
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
-}
-
 variable "kafka_connect" {
   description = "Enable Kafka Connect service."
   type        = bool
@@ -451,4 +445,14 @@ variable "service_integrations" {
   description = "Service integrations to specify when creating a service."
   type        = list(any)
   default     = []
+}
+
+variable "ip_filter_object" {
+  description = "Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'."
+  type        = list(any)
+  default = [
+    {
+      network = "0.0.0.0/0"
+    }
+  ]
 }
