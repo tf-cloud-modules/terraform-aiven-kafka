@@ -17,15 +17,13 @@ module "kafka" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.0.0 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.0.0, < 5.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | >= 4.0.0 |
-
-
+| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | 4.1.3 |
 
 ## Modules
 
@@ -52,7 +50,7 @@ No modules.
 | <a name="input_group_initial_rebalance_delay_ms"></a> [group\_initial\_rebalance\_delay\_ms](#input\_group\_initial\_rebalance\_delay\_ms) | group.initial.rebalance.delay.ms | `number` | `null` | no |
 | <a name="input_group_max_session_timeout_ms"></a> [group\_max\_session\_timeout\_ms](#input\_group\_max\_session\_timeout\_ms) | group.max.session.timeout.ms | `number` | `null` | no |
 | <a name="input_group_min_session_timeout_ms"></a> [group\_min\_session\_timeout\_ms](#input\_group\_min\_session\_timeout\_ms) | group.min.session.timeout.ms | `number` | `null` | no |
-| <a name="input_ip_filter"></a> [ip\_filter](#input\_ip\_filter) | IP filter. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_ip_filter_object"></a> [ip\_filter\_object](#input\_ip\_filter\_object) | Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'. | `list(any)` | <pre>[<br>  {<br>    "network": "0.0.0.0/0"<br>  }<br>]</pre> | no |
 | <a name="input_kafka_authentication_methods_certificate"></a> [kafka\_authentication\_methods\_certificate](#input\_kafka\_authentication\_methods\_certificate) | Enable certificate/SSL authentication. | `bool` | `true` | no |
 | <a name="input_kafka_authentication_methods_sasl"></a> [kafka\_authentication\_methods\_sasl](#input\_kafka\_authentication\_methods\_sasl) | Enable SASL authentication. | `bool` | `false` | no |
 | <a name="input_kafka_connect"></a> [kafka\_connect](#input\_kafka\_connect) | Enable Kafka Connect service. | `bool` | `false` | no |

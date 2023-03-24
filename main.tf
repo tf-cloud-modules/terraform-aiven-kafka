@@ -14,11 +14,18 @@ resource "aiven_kafka" "this" {
 
   kafka_user_config {
     custom_domain   = var.custom_domain
-    ip_filter       = var.ip_filter
     kafka_connect   = var.kafka_connect
     kafka_rest      = var.kafka_rest
     kafka_version   = var.kafka_version
     schema_registry = var.schema_registry
+
+    dynamic "ip_filter_object" {
+      for_each = var.ip_filter_object
+      content {
+        network     = lookup(ip_filter_object.value, "network")
+        description = lookup(ip_filter_object.value, "description", null)
+      }
+    }
 
     public_access {
       kafka           = var.public_access_kafka

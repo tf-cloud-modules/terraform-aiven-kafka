@@ -36,13 +36,13 @@ module "schema" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 3.0.0 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.0.0, < 5.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | >= 3.0.0 |
+| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | >= 4.0.0, < 5.0.0 |
 
 ## Modules
 
@@ -58,7 +58,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_compatibility_level"></a> [compatibility\_level](#input\_compatibility\_level) | Kafka Schemas compatibility level. | `string` | `""` | no |
+| <a name="input_compatibility_level"></a> [compatibility\_level](#input\_compatibility\_level) | Kafka Schemas compatibility level. | `string` | `null` | no |
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created. | `bool` | `true` | no |
 | <a name="input_project"></a> [project](#input\_project) | Aiven Cloud Project Name. | `string` | n/a | yes |
 | <a name="input_schema"></a> [schema](#input\_schema) | Kafka Schema configuration should be a valid Avro Schema JSON format. | `string` | n/a | yes |

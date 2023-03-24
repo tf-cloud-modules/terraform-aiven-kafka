@@ -32,5 +32,5 @@ variable "username" {
 variable "acl_id" {
   description = "Kafka ACL ID."
   type        = string
-  default     = ""
+  default     = null
 }

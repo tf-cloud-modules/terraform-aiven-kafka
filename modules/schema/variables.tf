@@ -22,7 +22,7 @@ variable "subject_name" {
 variable "compatibility_level" {
   description = "Kafka Schemas compatibility level."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "schema" {
