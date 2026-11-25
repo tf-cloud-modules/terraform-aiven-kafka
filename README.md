@@ -1,3 +1,5 @@
+**English** | [Русский](README.ru.md)
+
 # Aiven Kafka Terraform module
 
 Terraform module which creates Aiven Kafka resources
@@ -15,15 +17,15 @@ module "kafka" {
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.0.0, < 5.0.0 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.64.0, < 5.0.0 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | 4.1.3 |
+| ---- | ------- |
+| <a name="provider_aiven"></a> [aiven](#provider\_aiven) | 4.66.0 |
 
 ## Modules
 
@@ -32,25 +34,33 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aiven_kafka.this](https://registry.terraform.io/providers/aiven/aiven/latest/docs/resources/kafka) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_auto_create_topics_enable"></a> [auto\_create\_topics\_enable](#input\_auto\_create\_topics\_enable) | auto.create.topics.enable | `bool` | `false` | no |
 | <a name="input_cloud_name"></a> [cloud\_name](#input\_cloud\_name) | Defines where the cloud provider and region where the service is hosted in. | `string` | `"aws-us-east-1"` | no |
+| <a name="input_cmk_id"></a> [cmk\_id](#input\_cmk\_id) | Customer Managed Key ID to associate with the service for encryption at rest. | `string` | `null` | no |
 | <a name="input_compression_type"></a> [compression\_type](#input\_compression\_type) | compression.type | `string` | `""` | no |
 | <a name="input_connections_max_idle_ms"></a> [connections\_max\_idle\_ms](#input\_connections\_max\_idle\_ms) | connections.max.idle.ms | `number` | `null` | no |
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created. | `bool` | `true` | no |
 | <a name="input_custom_domain"></a> [custom\_domain](#input\_custom\_domain) | Custom domain. | `string` | `""` | no |
 | <a name="input_default_acl"></a> [default\_acl](#input\_default\_acl) | Create default wildcard Kafka ACL. | `bool` | `false` | no |
 | <a name="input_default_replication_factor"></a> [default\_replication\_factor](#input\_default\_replication\_factor) | default.replication.factor | `number` | `null` | no |
+| <a name="input_group_consumer_heartbeat_interval_ms"></a> [group\_consumer\_heartbeat\_interval\_ms](#input\_group\_consumer\_heartbeat\_interval\_ms) | group.consumer.heartbeat.interval.ms | `number` | `null` | no |
+| <a name="input_group_consumer_max_heartbeat_interval_ms"></a> [group\_consumer\_max\_heartbeat\_interval\_ms](#input\_group\_consumer\_max\_heartbeat\_interval\_ms) | group.consumer.max.heartbeat.interval.ms | `number` | `null` | no |
+| <a name="input_group_consumer_max_session_timeout_ms"></a> [group\_consumer\_max\_session\_timeout\_ms](#input\_group\_consumer\_max\_session\_timeout\_ms) | group.consumer.max.session.timeout.ms | `number` | `null` | no |
+| <a name="input_group_consumer_min_heartbeat_interval_ms"></a> [group\_consumer\_min\_heartbeat\_interval\_ms](#input\_group\_consumer\_min\_heartbeat\_interval\_ms) | group.consumer.min.heartbeat.interval.ms | `number` | `null` | no |
+| <a name="input_group_consumer_min_session_timeout_ms"></a> [group\_consumer\_min\_session\_timeout\_ms](#input\_group\_consumer\_min\_session\_timeout\_ms) | group.consumer.min.session.timeout.ms | `number` | `null` | no |
+| <a name="input_group_consumer_session_timeout_ms"></a> [group\_consumer\_session\_timeout\_ms](#input\_group\_consumer\_session\_timeout\_ms) | group.consumer.session.timeout.ms | `number` | `null` | no |
+| <a name="input_group_coordinator_rebalance_protocols"></a> [group\_coordinator\_rebalance\_protocols](#input\_group\_coordinator\_rebalance\_protocols) | group.coordinator.rebalance.protocols | `string` | `""` | no |
 | <a name="input_group_initial_rebalance_delay_ms"></a> [group\_initial\_rebalance\_delay\_ms](#input\_group\_initial\_rebalance\_delay\_ms) | group.initial.rebalance.delay.ms | `number` | `null` | no |
 | <a name="input_group_max_session_timeout_ms"></a> [group\_max\_session\_timeout\_ms](#input\_group\_max\_session\_timeout\_ms) | group.max.session.timeout.ms | `number` | `null` | no |
 | <a name="input_group_min_session_timeout_ms"></a> [group\_min\_session\_timeout\_ms](#input\_group\_min\_session\_timeout\_ms) | group.min.session.timeout.ms | `number` | `null` | no |
-| <a name="input_ip_filter_object"></a> [ip\_filter\_object](#input\_ip\_filter\_object) | Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'. | `list(any)` | <pre>[<br>  {<br>    "network": "0.0.0.0/0"<br>  }<br>]</pre> | no |
+| <a name="input_ip_filter_object"></a> [ip\_filter\_object](#input\_ip\_filter\_object) | Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'. | `list(any)` | <pre>[<br/>  {<br/>    "network": "0.0.0.0/0"<br/>  }<br/>]</pre> | no |
 | <a name="input_kafka_authentication_methods_certificate"></a> [kafka\_authentication\_methods\_certificate](#input\_kafka\_authentication\_methods\_certificate) | Enable certificate/SSL authentication. | `bool` | `true` | no |
 | <a name="input_kafka_authentication_methods_sasl"></a> [kafka\_authentication\_methods\_sasl](#input\_kafka\_authentication\_methods\_sasl) | Enable SASL authentication. | `bool` | `false` | no |
 | <a name="input_kafka_connect"></a> [kafka\_connect](#input\_kafka\_connect) | Enable Kafka Connect service. | `bool` | `false` | no |
@@ -68,7 +78,11 @@ No modules.
 | <a name="input_log_flush_interval_ms"></a> [log\_flush\_interval\_ms](#input\_log\_flush\_interval\_ms) | log.flush.interval.ms | `number` | `null` | no |
 | <a name="input_log_index_interval_bytes"></a> [log\_index\_interval\_bytes](#input\_log\_index\_interval\_bytes) | log.index.interval.bytes | `number` | `null` | no |
 | <a name="input_log_index_size_max_bytes"></a> [log\_index\_size\_max\_bytes](#input\_log\_index\_size\_max\_bytes) | log.index.size.max.bytes | `number` | `null` | no |
+| <a name="input_log_local_retention_bytes"></a> [log\_local\_retention\_bytes](#input\_log\_local\_retention\_bytes) | log.local.retention.bytes | `number` | `null` | no |
+| <a name="input_log_local_retention_ms"></a> [log\_local\_retention\_ms](#input\_log\_local\_retention\_ms) | log.local.retention.ms | `number` | `null` | no |
 | <a name="input_log_message_downconversion_enable"></a> [log\_message\_downconversion\_enable](#input\_log\_message\_downconversion\_enable) | log.message.downconversion.enable | `bool` | `false` | no |
+| <a name="input_log_message_timestamp_after_max_ms"></a> [log\_message\_timestamp\_after\_max\_ms](#input\_log\_message\_timestamp\_after\_max\_ms) | log.message.timestamp.after.max.ms | `number` | `null` | no |
+| <a name="input_log_message_timestamp_before_max_ms"></a> [log\_message\_timestamp\_before\_max\_ms](#input\_log\_message\_timestamp\_before\_max\_ms) | log.message.timestamp.before.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_difference_max_ms"></a> [log\_message\_timestamp\_difference\_max\_ms](#input\_log\_message\_timestamp\_difference\_max\_ms) | log.message.timestamp.difference.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_type"></a> [log\_message\_timestamp\_type](#input\_log\_message\_timestamp\_type) | log.message.timestamp.type | `string` | `""` | no |
 | <a name="input_log_preallocate"></a> [log\_preallocate](#input\_log\_preallocate) | log.preallocate | `bool` | `false` | no |
@@ -105,21 +119,27 @@ No modules.
 | <a name="input_public_access_schema_registry"></a> [public\_access\_schema\_registry](#input\_public\_access\_schema\_registry) | Allow clients to connect to schema\_registry from the public internet for service nodes that are in a project VPC or another type of private network. | `bool` | `false` | no |
 | <a name="input_replica_fetch_max_bytes"></a> [replica\_fetch\_max\_bytes](#input\_replica\_fetch\_max\_bytes) | replica.fetch.max.bytes | `number` | `null` | no |
 | <a name="input_replica_fetch_response_max_bytes"></a> [replica\_fetch\_response\_max\_bytes](#input\_replica\_fetch\_response\_max\_bytes) | replica.fetch.response.max.bytes | `number` | `null` | no |
+| <a name="input_sasl_oauthbearer_expected_audience"></a> [sasl\_oauthbearer\_expected\_audience](#input\_sasl\_oauthbearer\_expected\_audience) | sasl.oauthbearer.expected.audience | `string` | `""` | no |
+| <a name="input_sasl_oauthbearer_expected_issuer"></a> [sasl\_oauthbearer\_expected\_issuer](#input\_sasl\_oauthbearer\_expected\_issuer) | sasl.oauthbearer.expected.issuer | `string` | `""` | no |
+| <a name="input_sasl_oauthbearer_jwks_endpoint_url"></a> [sasl\_oauthbearer\_jwks\_endpoint\_url](#input\_sasl\_oauthbearer\_jwks\_endpoint\_url) | sasl.oauthbearer.jwks.endpoint.url | `string` | `""` | no |
+| <a name="input_sasl_oauthbearer_sub_claim_name"></a> [sasl\_oauthbearer\_sub\_claim\_name](#input\_sasl\_oauthbearer\_sub\_claim\_name) | sasl.oauthbearer.sub.claim.name | `string` | `""` | no |
 | <a name="input_schema_registry"></a> [schema\_registry](#input\_schema\_registry) | Enable Schema-Registry service. | `bool` | `false` | no |
 | <a name="input_schema_registry_config"></a> [schema\_registry\_config](#input\_schema\_registry\_config) | Schema Registry configuration. | `list(any)` | `[]` | no |
 | <a name="input_service_integrations"></a> [service\_integrations](#input\_service\_integrations) | Service integrations to specify when creating a service. | `list(any)` | `[]` | no |
+| <a name="input_service_log"></a> [service\_log](#input\_service\_log) | Store logs for the service so that they are available in the HTTP API and console. | `bool` | `null` | no |
 | <a name="input_service_name"></a> [service\_name](#input\_service\_name) | Specifies the actual name of the service. | `string` | n/a | yes |
 | <a name="input_socket_request_max_bytes"></a> [socket\_request\_max\_bytes](#input\_socket\_request\_max\_bytes) | socket.request.max.bytes | `number` | `null` | no |
 | <a name="input_static_ips"></a> [static\_ips](#input\_static\_ips) | Static IPs that are going to be associated with this service. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | List of the service tags. | `list(any)` | `[]` | no |
 | <a name="input_termination_protection"></a> [termination\_protection](#input\_termination\_protection) | Prevents the service from being deleted. | `bool` | `false` | no |
+| <a name="input_transaction_partition_verification_enable"></a> [transaction\_partition\_verification\_enable](#input\_transaction\_partition\_verification\_enable) | transaction.partition.verification.enable | `bool` | `false` | no |
 | <a name="input_transaction_remove_expired_transaction_cleanup_interval_ms"></a> [transaction\_remove\_expired\_transaction\_cleanup\_interval\_ms](#input\_transaction\_remove\_expired\_transaction\_cleanup\_interval\_ms) | transaction.remove.expired.transaction.cleanup.interval.ms | `number` | `null` | no |
 | <a name="input_transaction_state_log_segment_bytes"></a> [transaction\_state\_log\_segment\_bytes](#input\_transaction\_state\_log\_segment\_bytes) | transaction.state.log.segment.bytes | `number` | `null` | no |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_cloud_name"></a> [cloud\_name](#output\_cloud\_name) | Defines where the cloud provider and region where the service is hosted in. |
 | <a name="output_components"></a> [components](#output\_components) | Service component information objects. |
 | <a name="output_disk_space_cap"></a> [disk\_space\_cap](#output\_disk\_space\_cap) | The maximum disk space of the service, possible values depend on the service type, the cloud provider and the project. |
@@ -129,6 +149,7 @@ No modules.
 | <a name="output_kafka"></a> [kafka](#output\_kafka) | Kafka server provided values. |
 | <a name="output_kafka_user_config"></a> [kafka\_user\_config](#output\_kafka\_user\_config) | Kafka user configurable settings. |
 | <a name="output_maintenance_window_dow"></a> [maintenance\_window\_dow](#output\_maintenance\_window\_dow) | Day of week when maintenance operations should be performed. |
+| <a name="output_maintenance_window_enabled"></a> [maintenance\_window\_enabled](#output\_maintenance\_window\_enabled) | Indicates whether the maintenance window is currently enabled for this service. |
 | <a name="output_maintenance_window_time"></a> [maintenance\_window\_time](#output\_maintenance\_window\_time) | Time of day when maintenance operations should be performed. |
 | <a name="output_plan"></a> [plan](#output\_plan) | Defines what kind of computing resources are allocated for the service. |
 | <a name="output_project"></a> [project](#output\_project) | Aiven Cloud Project Name. |

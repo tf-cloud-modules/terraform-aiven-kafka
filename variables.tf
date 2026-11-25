@@ -10,6 +10,12 @@ variable "cloud_name" {
   default     = "aws-us-east-1"
 }
 
+variable "cmk_id" {
+  description = "Customer Managed Key ID to associate with the service for encryption at rest."
+  type        = string
+  default     = null
+}
+
 variable "maintenance_window_dow" {
   description = "Day of week when maintenance operations should be performed. One monday, tuesday, wednesday, etc."
   type        = string
@@ -102,6 +108,12 @@ variable "schema_registry" {
   description = "Enable Schema-Registry service."
   type        = bool
   default     = false
+}
+
+variable "service_log" {
+  description = "Store logs for the service so that they are available in the HTTP API and console."
+  type        = bool
+  default     = null
 }
 
 variable "private_access_prometheus" {
@@ -200,6 +212,48 @@ variable "default_replication_factor" {
   default     = null
 }
 
+variable "group_consumer_heartbeat_interval_ms" {
+  description = "group.consumer.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_max_heartbeat_interval_ms" {
+  description = "group.consumer.max.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_max_session_timeout_ms" {
+  description = "group.consumer.max.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_min_heartbeat_interval_ms" {
+  description = "group.consumer.min.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_min_session_timeout_ms" {
+  description = "group.consumer.min.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_session_timeout_ms" {
+  description = "group.consumer.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_coordinator_rebalance_protocols" {
+  description = "group.coordinator.rebalance.protocols"
+  type        = string
+  default     = ""
+}
+
 variable "group_initial_rebalance_delay_ms" {
   description = "group.initial.rebalance.delay.ms"
   type        = number
@@ -273,10 +327,34 @@ variable "log_index_size_max_bytes" {
   default     = null
 }
 
+variable "log_local_retention_bytes" {
+  description = "log.local.retention.bytes"
+  type        = number
+  default     = null
+}
+
+variable "log_local_retention_ms" {
+  description = "log.local.retention.ms"
+  type        = number
+  default     = null
+}
+
 variable "log_message_downconversion_enable" {
   description = "log.message.downconversion.enable"
   type        = bool
   default     = false
+}
+
+variable "log_message_timestamp_after_max_ms" {
+  description = "log.message.timestamp.after.max.ms"
+  type        = number
+  default     = null
+}
+
+variable "log_message_timestamp_before_max_ms" {
+  description = "log.message.timestamp.before.max.ms"
+  type        = number
+  default     = null
 }
 
 variable "log_message_timestamp_difference_max_ms" {
@@ -393,10 +471,40 @@ variable "replica_fetch_response_max_bytes" {
   default     = null
 }
 
+variable "sasl_oauthbearer_expected_audience" {
+  description = "sasl.oauthbearer.expected.audience"
+  type        = string
+  default     = ""
+}
+
+variable "sasl_oauthbearer_expected_issuer" {
+  description = "sasl.oauthbearer.expected.issuer"
+  type        = string
+  default     = ""
+}
+
+variable "sasl_oauthbearer_jwks_endpoint_url" {
+  description = "sasl.oauthbearer.jwks.endpoint.url"
+  type        = string
+  default     = ""
+}
+
+variable "sasl_oauthbearer_sub_claim_name" {
+  description = "sasl.oauthbearer.sub.claim.name"
+  type        = string
+  default     = ""
+}
+
 variable "socket_request_max_bytes" {
   description = "socket.request.max.bytes"
   type        = number
   default     = null
+}
+
+variable "transaction_partition_verification_enable" {
+  description = "transaction.partition.verification.enable"
+  type        = bool
+  default     = false
 }
 
 variable "transaction_remove_expired_transaction_cleanup_interval_ms" {

@@ -36,7 +36,7 @@ No providers.
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_acl"></a> [acl](#module\_acl) | ../../modules/acl | n/a |
 | <a name="module_connector"></a> [connector](#module\_connector) | ../../modules/connector | n/a |
 | <a name="module_kafka"></a> [kafka](#module\_kafka) | ../.. | n/a |
@@ -53,7 +53,7 @@ No resources.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_project"></a> [project](#input\_project) | Aiven Cloud Project Name. | `string` | n/a | yes |
 
 ## Outputs

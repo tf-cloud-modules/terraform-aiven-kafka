@@ -35,3 +35,9 @@ variable "schema_type" {
   type        = string
   default     = "AVRO"
 }
+
+variable "references" {
+  description = "Schema references to other registered subjects. Each item should contain `name`, `subject` and `version`."
+  type        = list(any)
+  default     = []
+}

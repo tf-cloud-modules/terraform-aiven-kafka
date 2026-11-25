@@ -5,26 +5,34 @@ resource "aiven_kafka_topic" "this" {
   partitions             = var.partitions
   replication            = var.replication
   topic_name             = var.topic_name
+  topic_description      = var.topic_description
+  owner_user_group_id    = var.owner_user_group_id
   termination_protection = var.termination_protection
 
   config {
     cleanup_policy                      = var.cleanup_policy
     compression_type                    = var.compression_type
     delete_retention_ms                 = var.delete_retention_ms
+    diskless_enable                     = var.diskless_enable
     file_delete_delay_ms                = var.file_delete_delay_ms
     flush_messages                      = var.flush_messages
     flush_ms                            = var.flush_ms
     index_interval_bytes                = var.index_interval_bytes
+    local_retention_bytes               = var.local_retention_bytes
+    local_retention_ms                  = var.local_retention_ms
     max_compaction_lag_ms               = var.max_compaction_lag_ms
     max_message_bytes                   = var.max_message_bytes
     message_downconversion_enable       = var.message_downconversion_enable
     message_format_version              = var.message_format_version
+    message_timestamp_after_max_ms      = var.message_timestamp_after_max_ms
+    message_timestamp_before_max_ms     = var.message_timestamp_before_max_ms
     message_timestamp_difference_max_ms = var.message_timestamp_difference_max_ms
     message_timestamp_type              = var.message_timestamp_type
     min_cleanable_dirty_ratio           = var.min_cleanable_dirty_ratio
     min_compaction_lag_ms               = var.min_compaction_lag_ms
     min_insync_replicas                 = var.min_insync_replicas
     preallocate                         = var.preallocate
+    remote_storage_enable               = var.remote_storage_enable
     retention_bytes                     = var.retention_bytes
     retention_ms                        = var.retention_ms
     segment_bytes                       = var.segment_bytes
