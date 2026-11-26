@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-11-26
+
 ### Changed
 - **Breaking default change:** new services now default to Kafka `4.2`, Aiven Kafka Developer plan `developer-2-1d`, and cloud `do-fra`. The published Developer-tier version matrix lists `3.9`, `4.1`, and `4.2`; `4.3` is not listed for this tier. The Developer plan starts at $35 USD/month for one-day retention; price varies by cloud and region, and Kafka Connect is billed separately. Existing configurations that rely on module defaults may plan Kafka version, service plan, and/or cloud changes after updating; review the Terraform plan and set `kafka_version`, `plan`, and `cloud_name` explicitly to current service values to defer them. In particular, pin an existing service's current Kafka version to avoid an unintended version change. Plan or cloud changes may incur costs and trigger a migration.
 - The complete example no longer enables the unsupported `kafka_connect` setting or creates a connector on the Developer plan. The connector submodule remains available for a separately provisioned, compatible Kafka Connect service.
@@ -135,7 +137,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release.
 
-[Unreleased]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/1.1.2...2.0.0
 [1.1.2]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/1.1.0...1.1.2
 [1.1.0]: https://github.com/tf-cloud-modules/terraform-aiven-kafka/compare/0.16.0...1.1.0
