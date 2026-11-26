@@ -251,7 +251,7 @@ variable "group_consumer_session_timeout_ms" {
 variable "group_coordinator_rebalance_protocols" {
   description = "group.coordinator.rebalance.protocols. Deprecated in Kafka 4.3; avoid setting it for new services."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "group_initial_rebalance_delay_ms" {
