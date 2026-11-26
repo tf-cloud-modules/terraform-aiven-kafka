@@ -29,9 +29,9 @@ variable "maintenance_window_time" {
 }
 
 variable "plan" {
-  description = "Defines what kind of computing resources are allocated for the service."
+  description = "Defines what kind of computing resources are allocated for the service. The default startup-4 plan supports Kafka 3.9 and later."
   type        = string
-  default     = "startup-2"
+  default     = "startup-4"
 }
 
 variable "project" {
@@ -99,9 +99,9 @@ variable "kafka_rest" {
 }
 
 variable "kafka_version" {
-  description = ""
+  description = "Kafka major version. Defaults to 4.3, the current Aiven default for new services. Set the existing service version explicitly before upgrading this module to avoid an unintended version change."
   type        = string
-  default     = "3.2"
+  default     = "4.3"
 }
 
 variable "schema_registry" {
@@ -249,7 +249,7 @@ variable "group_consumer_session_timeout_ms" {
 }
 
 variable "group_coordinator_rebalance_protocols" {
-  description = "group.coordinator.rebalance.protocols"
+  description = "group.coordinator.rebalance.protocols. Deprecated in Kafka 4.3; avoid setting it for new services."
   type        = string
   default     = ""
 }
@@ -358,7 +358,7 @@ variable "log_message_timestamp_before_max_ms" {
 }
 
 variable "log_message_timestamp_difference_max_ms" {
-  description = "log.message.timestamp.difference.max.ms"
+  description = "log.message.timestamp.difference.max.ms. Removed in Kafka 4.0; use log_message_timestamp_before_max_ms and log_message_timestamp_after_max_ms instead."
   type        = number
   default     = null
 }

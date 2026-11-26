@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Breaking default change:** new services now default to Kafka `4.3` and plan `startup-4`, matching Aiven's current defaults and Kafka 3.9+ plan requirements. Existing configurations that relied on either module default can plan an in-place Kafka version upgrade and/or plan change after updating the module. Set `kafka_version` and `plan` explicitly to the current service values before updating if you want to defer those changes.
+- Kafka 4.x uses KRaft. Aiven does not support upgrading a ZooKeeper service running Kafka 3.8 or earlier directly to Kafka 4.x: upgrade to 3.9 and complete the KRaft migration first. Rollback to ZooKeeper is not possible after migration. This module change does not perform that migration or apply changes to existing services.
+- Kafka 4.0 removes `log.message.timestamp.difference.max.ms`; use `log.message.timestamp.before.max.ms` and `log.message.timestamp.after.max.ms`. Kafka 4.0 also ignores the deprecated topic `message.format.version` setting. Kafka 4.3 deprecates `group.coordinator.rebalance.protocols`.
+
 ### Added
 - Root module: new variables `cmk_id` (customer managed key) and `service_log`.
 - Root module: new `kafka_user_config.kafka` variables `group_consumer_heartbeat_interval_ms`,

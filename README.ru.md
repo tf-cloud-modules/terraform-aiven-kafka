@@ -13,6 +13,15 @@ module "kafka" {
   service_name = "test"
 }
 ```
+
+## Версия Kafka и обновления
+
+Для новых сервисов используются Kafka `4.3` и план `startup-4`, который Aiven применяет для Kafka 3.9 и новее. Эти defaults повлияют и на существующие сервисы, если `kafka_version` или `plan` явно не заданы: проверьте Terraform plan перед применением. Чтобы отложить изменения, укажите в обоих параметрах текущие значения сервиса.
+
+Kafka 4.x работает в режиме KRaft. Aiven не поддерживает прямое обновление сервиса с ZooKeeper и Kafka 3.8 или старше до Kafka 4.x. Сначала обновите сервис до 3.9 и завершите миграцию на KRaft; после миграции возврат к ZooKeeper невозможен. Обновление этого модуля само по себе не запускает миграцию или апгрейд.
+
+Перед использованием Kafka 4.x удалите настроенный `log.message.timestamp.difference.max.ms` и замените его на `log.message.timestamp.before.max.ms` / `log.message.timestamp.after.max.ms`. Устаревший параметр топика `message.format.version` в Kafka 4.x игнорируется. `group.coordinator.rebalance.protocols` объявлен устаревшим в Kafka 4.3.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -56,7 +65,7 @@ No modules.
 | <a name="input_group_consumer_min_heartbeat_interval_ms"></a> [group\_consumer\_min\_heartbeat\_interval\_ms](#input\_group\_consumer\_min\_heartbeat\_interval\_ms) | group.consumer.min.heartbeat.interval.ms | `number` | `null` | no |
 | <a name="input_group_consumer_min_session_timeout_ms"></a> [group\_consumer\_min\_session\_timeout\_ms](#input\_group\_consumer\_min\_session\_timeout\_ms) | group.consumer.min.session.timeout.ms | `number` | `null` | no |
 | <a name="input_group_consumer_session_timeout_ms"></a> [group\_consumer\_session\_timeout\_ms](#input\_group\_consumer\_session\_timeout\_ms) | group.consumer.session.timeout.ms | `number` | `null` | no |
-| <a name="input_group_coordinator_rebalance_protocols"></a> [group\_coordinator\_rebalance\_protocols](#input\_group\_coordinator\_rebalance\_protocols) | group.coordinator.rebalance.protocols | `string` | `""` | no |
+| <a name="input_group_coordinator_rebalance_protocols"></a> [group\_coordinator\_rebalance\_protocols](#input\_group\_coordinator\_rebalance\_protocols) | group.coordinator.rebalance.protocols. Deprecated in Kafka 4.3; avoid setting it for new services. | `string` | `""` | no |
 | <a name="input_group_initial_rebalance_delay_ms"></a> [group\_initial\_rebalance\_delay\_ms](#input\_group\_initial\_rebalance\_delay\_ms) | group.initial.rebalance.delay.ms | `number` | `null` | no |
 | <a name="input_group_max_session_timeout_ms"></a> [group\_max\_session\_timeout\_ms](#input\_group\_max\_session\_timeout\_ms) | group.max.session.timeout.ms | `number` | `null` | no |
 | <a name="input_group_min_session_timeout_ms"></a> [group\_min\_session\_timeout\_ms](#input\_group\_min\_session\_timeout\_ms) | group.min.session.timeout.ms | `number` | `null` | no |
@@ -67,7 +76,7 @@ No modules.
 | <a name="input_kafka_connect_config"></a> [kafka\_connect\_config](#input\_kafka\_connect\_config) | Kafka Connect configuration values. | `list(any)` | `[]` | no |
 | <a name="input_kafka_rest"></a> [kafka\_rest](#input\_kafka\_rest) | Enable Kafka-REST service. | `bool` | `false` | no |
 | <a name="input_kafka_rest_config"></a> [kafka\_rest\_config](#input\_kafka\_rest\_config) | Kafka REST configuration. | `list(any)` | `[]` | no |
-| <a name="input_kafka_version"></a> [kafka\_version](#input\_kafka\_version) | n/a | `string` | `"3.2"` | no |
+| <a name="input_kafka_version"></a> [kafka\_version](#input\_kafka\_version) | Kafka major version. Defaults to 4.3, the current Aiven default for new services. Set the existing service version explicitly before upgrading this module to avoid an unintended version change. | `string` | `"4.3"` | no |
 | <a name="input_karapace"></a> [karapace](#input\_karapace) | Switch the service to use Karapace for schema registry and REST proxy. | `bool` | `false` | no |
 | <a name="input_log_cleaner_delete_retention_ms"></a> [log\_cleaner\_delete\_retention\_ms](#input\_log\_cleaner\_delete\_retention\_ms) | log.cleaner.delete.retention.ms | `number` | `null` | no |
 | <a name="input_log_cleaner_max_compaction_lag_ms"></a> [log\_cleaner\_max\_compaction\_lag\_ms](#input\_log\_cleaner\_max\_compaction\_lag\_ms) | log.cleaner.max.compaction.lag.ms | `number` | `null` | no |
@@ -83,7 +92,7 @@ No modules.
 | <a name="input_log_message_downconversion_enable"></a> [log\_message\_downconversion\_enable](#input\_log\_message\_downconversion\_enable) | log.message.downconversion.enable | `bool` | `false` | no |
 | <a name="input_log_message_timestamp_after_max_ms"></a> [log\_message\_timestamp\_after\_max\_ms](#input\_log\_message\_timestamp\_after\_max\_ms) | log.message.timestamp.after.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_before_max_ms"></a> [log\_message\_timestamp\_before\_max\_ms](#input\_log\_message\_timestamp\_before\_max\_ms) | log.message.timestamp.before.max.ms | `number` | `null` | no |
-| <a name="input_log_message_timestamp_difference_max_ms"></a> [log\_message\_timestamp\_difference\_max\_ms](#input\_log\_message\_timestamp\_difference\_max\_ms) | log.message.timestamp.difference.max.ms | `number` | `null` | no |
+| <a name="input_log_message_timestamp_difference_max_ms"></a> [log\_message\_timestamp\_difference\_max\_ms](#input\_log\_message\_timestamp\_difference\_max\_ms) | log.message.timestamp.difference.max.ms. Removed in Kafka 4.0; use log\_message\_timestamp\_before\_max\_ms and log\_message\_timestamp\_after\_max\_ms instead. | `number` | `null` | no |
 | <a name="input_log_message_timestamp_type"></a> [log\_message\_timestamp\_type](#input\_log\_message\_timestamp\_type) | log.message.timestamp.type | `string` | `""` | no |
 | <a name="input_log_preallocate"></a> [log\_preallocate](#input\_log\_preallocate) | log.preallocate | `bool` | `false` | no |
 | <a name="input_log_retention_bytes"></a> [log\_retention\_bytes](#input\_log\_retention\_bytes) | log.retention.bytes | `number` | `null` | no |
@@ -101,7 +110,7 @@ No modules.
 | <a name="input_min_insync_replicas"></a> [min\_insync\_replicas](#input\_min\_insync\_replicas) | min.insync.replicas | `number` | `null` | no |
 | <a name="input_num_partitions"></a> [num\_partitions](#input\_num\_partitions) | num.partitions | `number` | `null` | no |
 | <a name="input_offsets_retention_minutes"></a> [offsets\_retention\_minutes](#input\_offsets\_retention\_minutes) | offsets.retention.minutes | `number` | `null` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | Defines what kind of computing resources are allocated for the service. | `string` | `"startup-2"` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | Defines what kind of computing resources are allocated for the service. The default startup-4 plan supports Kafka 3.9 and later. | `string` | `"startup-4"` | no |
 | <a name="input_private_access_prometheus"></a> [private\_access\_prometheus](#input\_private\_access\_prometheus) | Allow clients to connect to prometheus with a DNS name that always resolves to the service's private IP addresses. | `bool` | `false` | no |
 | <a name="input_privatelink_jolokia"></a> [privatelink\_jolokia](#input\_privatelink\_jolokia) | Enable jolokia. | `bool` | `false` | no |
 | <a name="input_privatelink_kafka"></a> [privatelink\_kafka](#input\_privatelink\_kafka) | Enable kafka. | `bool` | `false` | no |

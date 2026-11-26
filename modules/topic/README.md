@@ -57,10 +57,10 @@ No modules.
 | <a name="input_max_compaction_lag_ms"></a> [max\_compaction\_lag\_ms](#input\_max\_compaction\_lag\_ms) | max.compaction.lag.ms value. | `string` | `null` | no |
 | <a name="input_max_message_bytes"></a> [max\_message\_bytes](#input\_max\_message\_bytes) | max.message.bytes value. | `string` | `null` | no |
 | <a name="input_message_downconversion_enable"></a> [message\_downconversion\_enable](#input\_message\_downconversion\_enable) | message.downconversion.enable value. | `bool` | `null` | no |
-| <a name="input_message_format_version"></a> [message\_format\_version](#input\_message\_format\_version) | message.format.version value. | `string` | `null` | no |
+| <a name="input_message_format_version"></a> [message\_format\_version](#input\_message\_format\_version) | Deprecated in Kafka 4.0 and ignored by Aiven; do not set when using Kafka 4.x. | `string` | `null` | no |
 | <a name="input_message_timestamp_after_max_ms"></a> [message\_timestamp\_after\_max\_ms](#input\_message\_timestamp\_after\_max\_ms) | message.timestamp.after.max.ms value. | `string` | `null` | no |
 | <a name="input_message_timestamp_before_max_ms"></a> [message\_timestamp\_before\_max\_ms](#input\_message\_timestamp\_before\_max\_ms) | message.timestamp.before.max.ms value. | `string` | `null` | no |
-| <a name="input_message_timestamp_difference_max_ms"></a> [message\_timestamp\_difference\_max\_ms](#input\_message\_timestamp\_difference\_max\_ms) | message.timestamp.difference.max.ms value. | `string` | `null` | no |
+| <a name="input_message_timestamp_difference_max_ms"></a> [message\_timestamp\_difference\_max\_ms](#input\_message\_timestamp\_difference\_max\_ms) | message.timestamp.difference.max.ms value. For Kafka 4.x, use message\_timestamp\_before\_max\_ms and message\_timestamp\_after\_max\_ms instead. | `string` | `null` | no |
 | <a name="input_message_timestamp_type"></a> [message\_timestamp\_type](#input\_message\_timestamp\_type) | message.timestamp.type value. | `string` | `null` | no |
 | <a name="input_min_cleanable_dirty_ratio"></a> [min\_cleanable\_dirty\_ratio](#input\_min\_cleanable\_dirty\_ratio) | min.cleanable.dirty.ratio value. | `number` | `null` | no |
 | <a name="input_min_compaction_lag_ms"></a> [min\_compaction\_lag\_ms](#input\_min\_compaction\_lag\_ms) | min.compaction.lag.ms value. | `string` | `null` | no |
