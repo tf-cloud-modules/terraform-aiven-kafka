@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Pin aiven/aiven to `= 4.66.0` in the root module, all submodules and the complete example.
+- Optional Kafka config strings and `custom_domain` now default to `null` rather than empty strings, allowing Aiven to apply provider defaults and preventing invalid empty enum values in plans.
 - **Breaking:** remove the `acl_id` variable from the `acl` and `schema_registry_acl`
   submodules. The provider marks `acl_id` as read-only since v4, so setting it fails with
   "Invalid Configuration for Read-Only Attribute".

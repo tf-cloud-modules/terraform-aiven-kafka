@@ -53,10 +53,10 @@ No modules.
 | <a name="input_auto_create_topics_enable"></a> [auto\_create\_topics\_enable](#input\_auto\_create\_topics\_enable) | auto.create.topics.enable | `bool` | `false` | no |
 | <a name="input_cloud_name"></a> [cloud\_name](#input\_cloud\_name) | Defines where the cloud provider and region where the service is hosted in. | `string` | `"aws-us-east-1"` | no |
 | <a name="input_cmk_id"></a> [cmk\_id](#input\_cmk\_id) | Customer Managed Key ID to associate with the service for encryption at rest. | `string` | `null` | no |
-| <a name="input_compression_type"></a> [compression\_type](#input\_compression\_type) | compression.type | `string` | `""` | no |
+| <a name="input_compression_type"></a> [compression\_type](#input\_compression\_type) | compression.type. When unset, Aiven uses its default. | `string` | `null` | no |
 | <a name="input_connections_max_idle_ms"></a> [connections\_max\_idle\_ms](#input\_connections\_max\_idle\_ms) | connections.max.idle.ms | `number` | `null` | no |
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created. | `bool` | `true` | no |
-| <a name="input_custom_domain"></a> [custom\_domain](#input\_custom\_domain) | Custom domain. | `string` | `""` | no |
+| <a name="input_custom_domain"></a> [custom\_domain](#input\_custom\_domain) | Optional custom domain. When unset, Aiven uses its default domain. | `string` | `null` | no |
 | <a name="input_default_acl"></a> [default\_acl](#input\_default\_acl) | Create default wildcard Kafka ACL. | `bool` | `false` | no |
 | <a name="input_default_replication_factor"></a> [default\_replication\_factor](#input\_default\_replication\_factor) | default.replication.factor | `number` | `null` | no |
 | <a name="input_group_consumer_heartbeat_interval_ms"></a> [group\_consumer\_heartbeat\_interval\_ms](#input\_group\_consumer\_heartbeat\_interval\_ms) | group.consumer.heartbeat.interval.ms | `number` | `null` | no |
@@ -82,7 +82,7 @@ No modules.
 | <a name="input_log_cleaner_max_compaction_lag_ms"></a> [log\_cleaner\_max\_compaction\_lag\_ms](#input\_log\_cleaner\_max\_compaction\_lag\_ms) | log.cleaner.max.compaction.lag.ms | `number` | `null` | no |
 | <a name="input_log_cleaner_min_cleanable_ratio"></a> [log\_cleaner\_min\_cleanable\_ratio](#input\_log\_cleaner\_min\_cleanable\_ratio) | log.cleaner.min.cleanable.ratio | `number` | `null` | no |
 | <a name="input_log_cleaner_min_compaction_lag_ms"></a> [log\_cleaner\_min\_compaction\_lag\_ms](#input\_log\_cleaner\_min\_compaction\_lag\_ms) | log.cleaner.min.compaction.lag.ms | `number` | `null` | no |
-| <a name="input_log_cleanup_policy"></a> [log\_cleanup\_policy](#input\_log\_cleanup\_policy) | log.cleanup.policy | `string` | `""` | no |
+| <a name="input_log_cleanup_policy"></a> [log\_cleanup\_policy](#input\_log\_cleanup\_policy) | log.cleanup.policy. When unset, Aiven uses its default. | `string` | `null` | no |
 | <a name="input_log_flush_interval_messages"></a> [log\_flush\_interval\_messages](#input\_log\_flush\_interval\_messages) | log.flush.interval.messages | `number` | `null` | no |
 | <a name="input_log_flush_interval_ms"></a> [log\_flush\_interval\_ms](#input\_log\_flush\_interval\_ms) | log.flush.interval.ms | `number` | `null` | no |
 | <a name="input_log_index_interval_bytes"></a> [log\_index\_interval\_bytes](#input\_log\_index\_interval\_bytes) | log.index.interval.bytes | `number` | `null` | no |
@@ -93,7 +93,7 @@ No modules.
 | <a name="input_log_message_timestamp_after_max_ms"></a> [log\_message\_timestamp\_after\_max\_ms](#input\_log\_message\_timestamp\_after\_max\_ms) | log.message.timestamp.after.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_before_max_ms"></a> [log\_message\_timestamp\_before\_max\_ms](#input\_log\_message\_timestamp\_before\_max\_ms) | log.message.timestamp.before.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_difference_max_ms"></a> [log\_message\_timestamp\_difference\_max\_ms](#input\_log\_message\_timestamp\_difference\_max\_ms) | log.message.timestamp.difference.max.ms. Removed in Kafka 4.0; use log\_message\_timestamp\_before\_max\_ms and log\_message\_timestamp\_after\_max\_ms instead. | `number` | `null` | no |
-| <a name="input_log_message_timestamp_type"></a> [log\_message\_timestamp\_type](#input\_log\_message\_timestamp\_type) | log.message.timestamp.type | `string` | `""` | no |
+| <a name="input_log_message_timestamp_type"></a> [log\_message\_timestamp\_type](#input\_log\_message\_timestamp\_type) | log.message.timestamp.type. When unset, Aiven uses its default. | `string` | `null` | no |
 | <a name="input_log_preallocate"></a> [log\_preallocate](#input\_log\_preallocate) | log.preallocate | `bool` | `false` | no |
 | <a name="input_log_retention_bytes"></a> [log\_retention\_bytes](#input\_log\_retention\_bytes) | log.retention.bytes | `number` | `null` | no |
 | <a name="input_log_retention_hours"></a> [log\_retention\_hours](#input\_log\_retention\_hours) | log.retention.hours | `number` | `null` | no |
@@ -128,10 +128,10 @@ No modules.
 | <a name="input_public_access_schema_registry"></a> [public\_access\_schema\_registry](#input\_public\_access\_schema\_registry) | Allow clients to connect to schema\_registry from the public internet for service nodes that are in a project VPC or another type of private network. | `bool` | `false` | no |
 | <a name="input_replica_fetch_max_bytes"></a> [replica\_fetch\_max\_bytes](#input\_replica\_fetch\_max\_bytes) | replica.fetch.max.bytes | `number` | `null` | no |
 | <a name="input_replica_fetch_response_max_bytes"></a> [replica\_fetch\_response\_max\_bytes](#input\_replica\_fetch\_response\_max\_bytes) | replica.fetch.response.max.bytes | `number` | `null` | no |
-| <a name="input_sasl_oauthbearer_expected_audience"></a> [sasl\_oauthbearer\_expected\_audience](#input\_sasl\_oauthbearer\_expected\_audience) | sasl.oauthbearer.expected.audience | `string` | `""` | no |
-| <a name="input_sasl_oauthbearer_expected_issuer"></a> [sasl\_oauthbearer\_expected\_issuer](#input\_sasl\_oauthbearer\_expected\_issuer) | sasl.oauthbearer.expected.issuer | `string` | `""` | no |
-| <a name="input_sasl_oauthbearer_jwks_endpoint_url"></a> [sasl\_oauthbearer\_jwks\_endpoint\_url](#input\_sasl\_oauthbearer\_jwks\_endpoint\_url) | sasl.oauthbearer.jwks.endpoint.url | `string` | `""` | no |
-| <a name="input_sasl_oauthbearer_sub_claim_name"></a> [sasl\_oauthbearer\_sub\_claim\_name](#input\_sasl\_oauthbearer\_sub\_claim\_name) | sasl.oauthbearer.sub.claim.name | `string` | `""` | no |
+| <a name="input_sasl_oauthbearer_expected_audience"></a> [sasl\_oauthbearer\_expected\_audience](#input\_sasl\_oauthbearer\_expected\_audience) | sasl.oauthbearer.expected.audience. When unset, Aiven uses its default. | `string` | `null` | no |
+| <a name="input_sasl_oauthbearer_expected_issuer"></a> [sasl\_oauthbearer\_expected\_issuer](#input\_sasl\_oauthbearer\_expected\_issuer) | sasl.oauthbearer.expected.issuer. When unset, Aiven uses its default. | `string` | `null` | no |
+| <a name="input_sasl_oauthbearer_jwks_endpoint_url"></a> [sasl\_oauthbearer\_jwks\_endpoint\_url](#input\_sasl\_oauthbearer\_jwks\_endpoint\_url) | sasl.oauthbearer.jwks.endpoint.url. When unset, Aiven uses its default. | `string` | `null` | no |
+| <a name="input_sasl_oauthbearer_sub_claim_name"></a> [sasl\_oauthbearer\_sub\_claim\_name](#input\_sasl\_oauthbearer\_sub\_claim\_name) | sasl.oauthbearer.sub.claim.name. When unset, Aiven uses its default. | `string` | `null` | no |
 | <a name="input_schema_registry"></a> [schema\_registry](#input\_schema\_registry) | Enable Schema-Registry service. | `bool` | `false` | no |
 | <a name="input_schema_registry_config"></a> [schema\_registry\_config](#input\_schema\_registry\_config) | Schema Registry configuration. | `list(any)` | `[]` | no |
 | <a name="input_service_integrations"></a> [service\_integrations](#input\_service\_integrations) | Service integrations to specify when creating a service. | `list(any)` | `[]` | no |

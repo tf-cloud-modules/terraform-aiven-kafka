@@ -81,9 +81,9 @@ variable "karapace" {
 }
 
 variable "custom_domain" {
-  description = "Custom domain."
+  description = "Optional custom domain. When unset, Aiven uses its default domain."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "kafka_connect" {
@@ -195,9 +195,9 @@ variable "auto_create_topics_enable" {
 }
 
 variable "compression_type" {
-  description = "compression.type"
+  description = "compression.type. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "connections_max_idle_ms" {
@@ -297,9 +297,9 @@ variable "log_cleaner_min_compaction_lag_ms" {
 }
 
 variable "log_cleanup_policy" {
-  description = "log.cleanup.policy"
+  description = "log.cleanup.policy. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_flush_interval_messages" {
@@ -364,9 +364,9 @@ variable "log_message_timestamp_difference_max_ms" {
 }
 
 variable "log_message_timestamp_type" {
-  description = "log.message.timestamp.type"
+  description = "log.message.timestamp.type. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_preallocate" {
@@ -472,27 +472,27 @@ variable "replica_fetch_response_max_bytes" {
 }
 
 variable "sasl_oauthbearer_expected_audience" {
-  description = "sasl.oauthbearer.expected.audience"
+  description = "sasl.oauthbearer.expected.audience. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "sasl_oauthbearer_expected_issuer" {
-  description = "sasl.oauthbearer.expected.issuer"
+  description = "sasl.oauthbearer.expected.issuer. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "sasl_oauthbearer_jwks_endpoint_url" {
-  description = "sasl.oauthbearer.jwks.endpoint.url"
+  description = "sasl.oauthbearer.jwks.endpoint.url. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "sasl_oauthbearer_sub_claim_name" {
-  description = "sasl.oauthbearer.sub.claim.name"
+  description = "sasl.oauthbearer.sub.claim.name. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "socket_request_max_bytes" {
