@@ -87,7 +87,7 @@ variable "custom_domain" {
 }
 
 variable "kafka_connect" {
-  description = "Enable Kafka Connect service."
+  description = "Enable Kafka Connect where supported. Aiven rejects this setting on the Developer plan."
   type        = bool
   default     = false
 }

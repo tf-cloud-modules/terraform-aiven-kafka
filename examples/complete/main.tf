@@ -2,7 +2,6 @@ module "kafka" {
   source          = "../.."
   project         = var.project
   service_name    = "test"
-  kafka_connect   = true
   schema_registry = true
   plan            = "developer-2-1d"
   tags = [
@@ -36,23 +35,6 @@ module "acl" {
   topic        = "test"
   permission   = "admin"
   username     = module.user.username
-}
-
-module "connector" {
-  source         = "../../modules/connector"
-  project        = module.kafka.project
-  service_name   = module.kafka.service_name
-  connector_name = "test"
-
-  config = {
-    "topics" = "test"
-    "connector.class" : "io.aiven.kafka.connect.opensearch.OpensearchSinkConnector"
-    "type.name"           = "os-connector"
-    "name"                = "test"
-    "connection.url"      = "https://url.com:9243"
-    "connection.username" = "test"
-    "connection.password" = "fakepassword"
-  }
 }
 
 module "schema" {

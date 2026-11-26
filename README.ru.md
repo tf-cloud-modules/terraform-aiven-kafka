@@ -16,7 +16,9 @@ module "kafka" {
 
 ## Версия Kafka и обновления
 
-Для новых сервисов используются Kafka `4.3` и Developer tier Aiven (`developer-2-1d`) в регионе `do-fra`. Это платный тариф с ограниченной производительностью: Aiven указывает начальную цену $35 USD/месяц при хранении в течение одного дня; цена зависит от региона и срока хранения. Kafka Connect оплачивается отдельно (полный пример включает его), поэтому перед применением проверьте текущую оценку стоимости Aiven. В Developer tier replication factor равен 1; в полном примере установлено это значение.
+Для новых сервисов используются Kafka `4.3` и Developer tier Aiven (`developer-2-1d`) в регионе `do-fra`. Это платный тариф с ограниченной производительностью: Aiven указывает начальную цену $35 USD/месяц при хранении в течение одного дня; цена зависит от региона и срока хранения. Перед применением проверьте текущую оценку стоимости Aiven. В Developer tier replication factor равен 1; в полном примере установлено это значение.
+
+Kafka Connect по умолчанию и в полном примере не включается: Aiven отклоняет `kafka_connect=true` для плана Developer. Aiven предлагает Kafka Connect как отдельный платный сервис; модуль `connector` требует отдельно созданный совместимый Kafka Connect и в полный пример не входит.
 
 Эти defaults повлияют и на существующие сервисы, если `kafka_version`, `plan` или `cloud_name` явно не заданы. Внимательно проверьте Terraform plan: смена плана или региона может изменить характеристики сервиса, привести к дополнительным расходам и запустить миграцию. Чтобы отложить изменения, задайте текущие значения всех трёх параметров. Доступные планы и регионы могут зависеть от проекта Aiven.
 
@@ -74,7 +76,7 @@ No modules.
 | <a name="input_ip_filter_object"></a> [ip\_filter\_object](#input\_ip\_filter\_object) | Allow incoming connections from CIDR address block, e.g. '10.20.0.0/16'. | `list(any)` | <pre>[<br/>  {<br/>    "network": "0.0.0.0/0"<br/>  }<br/>]</pre> | no |
 | <a name="input_kafka_authentication_methods_certificate"></a> [kafka\_authentication\_methods\_certificate](#input\_kafka\_authentication\_methods\_certificate) | Enable certificate/SSL authentication. | `bool` | `true` | no |
 | <a name="input_kafka_authentication_methods_sasl"></a> [kafka\_authentication\_methods\_sasl](#input\_kafka\_authentication\_methods\_sasl) | Enable SASL authentication. | `bool` | `false` | no |
-| <a name="input_kafka_connect"></a> [kafka\_connect](#input\_kafka\_connect) | Enable Kafka Connect service. | `bool` | `false` | no |
+| <a name="input_kafka_connect"></a> [kafka\_connect](#input\_kafka\_connect) | Enable Kafka Connect where supported. Aiven rejects this setting on the Developer plan. | `bool` | `false` | no |
 | <a name="input_kafka_connect_config"></a> [kafka\_connect\_config](#input\_kafka\_connect\_config) | Kafka Connect configuration values. | `list(any)` | `[]` | no |
 | <a name="input_kafka_rest"></a> [kafka\_rest](#input\_kafka\_rest) | Enable Kafka-REST service. | `bool` | `false` | no |
 | <a name="input_kafka_rest_config"></a> [kafka\_rest\_config](#input\_kafka\_rest\_config) | Kafka REST configuration. | `list(any)` | `[]` | no |

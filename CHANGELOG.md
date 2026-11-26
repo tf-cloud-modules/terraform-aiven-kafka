@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - **Breaking default change:** new services now default to Kafka `4.3`, Aiven Kafka Developer plan `developer-2-1d`, and cloud `do-fra`. The Developer plan starts at $35 USD/month for one-day retention; price varies by cloud and region, and Kafka Connect is billed separately. Existing configurations that rely on module defaults may plan Kafka version, service plan, and/or cloud changes after updating; review the Terraform plan and set `kafka_version`, `plan`, and `cloud_name` explicitly to current service values to defer them. Plan or cloud changes may incur costs and trigger a migration.
+- The complete example no longer enables the unsupported `kafka_connect` setting or creates a connector on the Developer plan. The connector submodule remains available for a separately provisioned, compatible Kafka Connect service.
 - Kafka 4.x uses KRaft. Aiven does not support upgrading a ZooKeeper service running Kafka 3.8 or earlier directly to Kafka 4.x: upgrade to 3.9 and complete the KRaft migration first. Rollback to ZooKeeper is not possible after migration. This module change does not perform that migration or apply changes to existing services.
 - Kafka 4.0 removes `log.message.timestamp.difference.max.ms`; use `log.message.timestamp.before.max.ms` and `log.message.timestamp.after.max.ms`. Kafka 4.0 also ignores the deprecated topic `message.format.version` setting. Kafka 4.3 deprecates `group.coordinator.rebalance.protocols`.
 
