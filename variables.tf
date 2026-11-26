@@ -17,15 +17,15 @@ variable "cmk_id" {
 }
 
 variable "maintenance_window_dow" {
-  description = "Day of week when maintenance operations should be performed. One monday, tuesday, wednesday, etc."
+  description = "Optional day of week for maintenance operations. Leave null on Aiven Kafka Developer plans, which do not support maintenance windows. One monday, tuesday, wednesday, etc."
   type        = string
-  default     = "thursday"
+  default     = null
 }
 
 variable "maintenance_window_time" {
-  description = "Time of day when maintenance operations should be performed. UTC time in HH:mm:ss format."
+  description = "Optional UTC time for maintenance operations in HH:mm:ss format. Leave null on Aiven Kafka Developer plans, which do not support maintenance windows."
   type        = string
-  default     = "01:00:00"
+  default     = null
 }
 
 variable "plan" {

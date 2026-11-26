@@ -24,6 +24,8 @@ This example uses the Aiven Kafka Developer plan `developer-2-1d` in `do-fra`. D
 
 Kafka Connect is intentionally not enabled here: Aiven rejects `kafka_connect=true` for this plan. The `connector` submodule can be used with a separately provisioned, compatible Kafka Connect service; that service is not created by this example and may add cost.
 
+The example does not define a maintenance window. Aiven rejects maintenance-window settings on the Developer plan; both module inputs default to `null` and are omitted. Do not set them unless using a plan that supports maintenance windows.
+
 Run `terraform destroy` when you don't need these resources.
 
 

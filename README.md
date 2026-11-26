@@ -20,6 +20,8 @@ New services default to Kafka `4.3` on Aiven's Developer tier (`developer-2-1d`)
 
 Kafka Connect is not enabled by default or in the complete example: Aiven rejects `kafka_connect=true` for the Developer plan. Aiven offers Kafka Connect as a separately billed service; the `connector` submodule requires a compatible Kafka Connect service to be provisioned separately and is not part of the complete example.
 
+Maintenance windows are unset by default. Aiven rejects a defined maintenance window for the Developer plan, so leave both `maintenance_window_dow` and `maintenance_window_time` unset (their default is `null`) when using Developer tier. These settings can be configured only for a plan that supports them.
+
 These defaults also affect existing services that do not set `kafka_version`, `plan`, or `cloud_name` explicitly. Review the Terraform plan carefully: changing plan or cloud can change service capacity, incur charges, and trigger a service migration. Set all three inputs to the current service values before upgrading the module if you want to defer these changes. Aiven plan and region availability can vary by project; select values available to your project.
 
 Kafka 4.x uses KRaft. Aiven does not support upgrading a ZooKeeper service on Kafka 3.8 or earlier directly to Kafka 4.x. Upgrade to 3.9 and complete the KRaft migration first; rollback to ZooKeeper is not possible after migration. This module update does not run an upgrade or migration.
@@ -106,8 +108,8 @@ No modules.
 | <a name="input_log_roll_ms"></a> [log\_roll\_ms](#input\_log\_roll\_ms) | log.roll.ms | `number` | `null` | no |
 | <a name="input_log_segment_bytes"></a> [log\_segment\_bytes](#input\_log\_segment\_bytes) | log.segment.bytes | `number` | `null` | no |
 | <a name="input_log_segment_delete_delay_ms"></a> [log\_segment\_delete\_delay\_ms](#input\_log\_segment\_delete\_delay\_ms) | log.segment.delete.delay.ms | `number` | `null` | no |
-| <a name="input_maintenance_window_dow"></a> [maintenance\_window\_dow](#input\_maintenance\_window\_dow) | Day of week when maintenance operations should be performed. One monday, tuesday, wednesday, etc. | `string` | `"thursday"` | no |
-| <a name="input_maintenance_window_time"></a> [maintenance\_window\_time](#input\_maintenance\_window\_time) | Time of day when maintenance operations should be performed. UTC time in HH:mm:ss format. | `string` | `"01:00:00"` | no |
+| <a name="input_maintenance_window_dow"></a> [maintenance\_window\_dow](#input\_maintenance\_window\_dow) | Optional day of week for maintenance operations. Leave null on Aiven Kafka Developer plans, which do not support maintenance windows. One monday, tuesday, wednesday, etc. | `string` | `null` | no |
+| <a name="input_maintenance_window_time"></a> [maintenance\_window\_time](#input\_maintenance\_window\_time) | Optional UTC time for maintenance operations in HH:mm:ss format. Leave null on Aiven Kafka Developer plans, which do not support maintenance windows. | `string` | `null` | no |
 | <a name="input_max_connections_per_ip"></a> [max\_connections\_per\_ip](#input\_max\_connections\_per\_ip) | max.connections.per.ip | `number` | `null` | no |
 | <a name="input_max_incremental_fetch_session_cache_slots"></a> [max\_incremental\_fetch\_session\_cache\_slots](#input\_max\_incremental\_fetch\_session\_cache\_slots) | max.incremental.fetch.session.cache.slots | `number` | `null` | no |
 | <a name="input_message_max_bytes"></a> [message\_max\_bytes](#input\_message\_max\_bytes) | message.max.bytes | `number` | `null` | no |
