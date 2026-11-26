@@ -33,6 +33,11 @@ output "maintenance_window_dow" {
   value       = try(aiven_kafka.this[0].maintenance_window_dow, "")
 }
 
+output "maintenance_window_enabled" {
+  description = "Indicates whether the maintenance window is currently enabled for this service."
+  value       = try(aiven_kafka.this[0].maintenance_window_enabled, "")
+}
+
 output "maintenance_window_time" {
   description = "Time of day when maintenance operations should be performed."
   value       = try(aiven_kafka.this[0].maintenance_window_time, "")

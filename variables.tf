@@ -5,27 +5,33 @@ variable "create" {
 }
 
 variable "cloud_name" {
-  description = "Defines where the cloud provider and region where the service is hosted in."
+  description = "Cloud and region where the service is hosted. The default do-fra region is used with the Aiven Kafka Developer tier; set a region available to your project if needed."
   type        = string
-  default     = "aws-us-east-1"
+  default     = "do-fra"
+}
+
+variable "cmk_id" {
+  description = "Customer Managed Key ID to associate with the service for encryption at rest."
+  type        = string
+  default     = null
 }
 
 variable "maintenance_window_dow" {
-  description = "Day of week when maintenance operations should be performed. One monday, tuesday, wednesday, etc."
+  description = "Optional day of week for maintenance operations. Omitted for Aiven Kafka Developer plans, which do not support maintenance windows. One monday, tuesday, wednesday, etc."
   type        = string
-  default     = "thursday"
+  default     = null
 }
 
 variable "maintenance_window_time" {
-  description = "Time of day when maintenance operations should be performed. UTC time in HH:mm:ss format."
+  description = "Optional UTC time for maintenance operations in HH:mm:ss format. Omitted for Aiven Kafka Developer plans, which do not support maintenance windows."
   type        = string
-  default     = "01:00:00"
+  default     = null
 }
 
 variable "plan" {
-  description = "Defines what kind of computing resources are allocated for the service."
+  description = "Aiven Kafka service plan. The default developer-2-1d plan is the Developer tier with one-day retention; pricing varies by cloud and region and starts at $35 USD/month. Kafka Connect is billed separately."
   type        = string
-  default     = "startup-2"
+  default     = "developer-2-1d"
 }
 
 variable "project" {
@@ -75,13 +81,13 @@ variable "karapace" {
 }
 
 variable "custom_domain" {
-  description = "Custom domain."
+  description = "Optional custom domain. When unset, Aiven uses its default domain."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "kafka_connect" {
-  description = "Enable Kafka Connect service."
+  description = "Enable Kafka Connect where supported. Aiven rejects this setting on the Developer plan."
   type        = bool
   default     = false
 }
@@ -93,15 +99,21 @@ variable "kafka_rest" {
 }
 
 variable "kafka_version" {
-  description = ""
+  description = "Kafka major version. Defaults to 4.2, the latest version in Aiven's published Developer-tier matrix. Version 4.3 is not listed as supported for Developer plans. Set the existing service version explicitly before upgrading this module to avoid an unintended version change."
   type        = string
-  default     = "3.2"
+  default     = "4.2"
 }
 
 variable "schema_registry" {
   description = "Enable Schema-Registry service."
   type        = bool
   default     = false
+}
+
+variable "service_log" {
+  description = "Store logs for the service so that they are available in the HTTP API and console."
+  type        = bool
+  default     = null
 }
 
 variable "private_access_prometheus" {
@@ -183,9 +195,9 @@ variable "auto_create_topics_enable" {
 }
 
 variable "compression_type" {
-  description = "compression.type"
+  description = "compression.type. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "connections_max_idle_ms" {
@@ -197,6 +209,48 @@ variable "connections_max_idle_ms" {
 variable "default_replication_factor" {
   description = "default.replication.factor"
   type        = number
+  default     = null
+}
+
+variable "group_consumer_heartbeat_interval_ms" {
+  description = "group.consumer.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_max_heartbeat_interval_ms" {
+  description = "group.consumer.max.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_max_session_timeout_ms" {
+  description = "group.consumer.max.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_min_heartbeat_interval_ms" {
+  description = "group.consumer.min.heartbeat.interval.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_min_session_timeout_ms" {
+  description = "group.consumer.min.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_consumer_session_timeout_ms" {
+  description = "group.consumer.session.timeout.ms"
+  type        = number
+  default     = null
+}
+
+variable "group_coordinator_rebalance_protocols" {
+  description = "group.coordinator.rebalance.protocols. Deprecated in Kafka 4.3; avoid setting it for new services."
+  type        = string
   default     = null
 }
 
@@ -243,9 +297,9 @@ variable "log_cleaner_min_compaction_lag_ms" {
 }
 
 variable "log_cleanup_policy" {
-  description = "log.cleanup.policy"
+  description = "log.cleanup.policy. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_flush_interval_messages" {
@@ -273,28 +327,52 @@ variable "log_index_size_max_bytes" {
   default     = null
 }
 
+variable "log_local_retention_bytes" {
+  description = "log.local.retention.bytes"
+  type        = number
+  default     = null
+}
+
+variable "log_local_retention_ms" {
+  description = "log.local.retention.ms"
+  type        = number
+  default     = null
+}
+
 variable "log_message_downconversion_enable" {
-  description = "log.message.downconversion.enable"
+  description = "log.message.downconversion.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting."
   type        = bool
-  default     = false
+  default     = null
+}
+
+variable "log_message_timestamp_after_max_ms" {
+  description = "log.message.timestamp.after.max.ms"
+  type        = number
+  default     = null
+}
+
+variable "log_message_timestamp_before_max_ms" {
+  description = "log.message.timestamp.before.max.ms"
+  type        = number
+  default     = null
 }
 
 variable "log_message_timestamp_difference_max_ms" {
-  description = "log.message.timestamp.difference.max.ms"
+  description = "log.message.timestamp.difference.max.ms. Removed in Kafka 4.0; use log_message_timestamp_before_max_ms and log_message_timestamp_after_max_ms instead."
   type        = number
   default     = null
 }
 
 variable "log_message_timestamp_type" {
-  description = "log.message.timestamp.type"
+  description = "log.message.timestamp.type. When unset, Aiven uses its default."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "log_preallocate" {
-  description = "log.preallocate"
+  description = "log.preallocate. Omitted for Aiven Kafka Developer plans, which do not support this setting."
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "log_retention_bytes" {
@@ -393,9 +471,39 @@ variable "replica_fetch_response_max_bytes" {
   default     = null
 }
 
+variable "sasl_oauthbearer_expected_audience" {
+  description = "sasl.oauthbearer.expected.audience. When unset, Aiven uses its default."
+  type        = string
+  default     = null
+}
+
+variable "sasl_oauthbearer_expected_issuer" {
+  description = "sasl.oauthbearer.expected.issuer. When unset, Aiven uses its default."
+  type        = string
+  default     = null
+}
+
+variable "sasl_oauthbearer_jwks_endpoint_url" {
+  description = "sasl.oauthbearer.jwks.endpoint.url. When unset, Aiven uses its default."
+  type        = string
+  default     = null
+}
+
+variable "sasl_oauthbearer_sub_claim_name" {
+  description = "sasl.oauthbearer.sub.claim.name. When unset, Aiven uses its default."
+  type        = string
+  default     = null
+}
+
 variable "socket_request_max_bytes" {
   description = "socket.request.max.bytes"
   type        = number
+  default     = null
+}
+
+variable "transaction_partition_verification_enable" {
+  description = "transaction.partition.verification.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting."
+  type        = bool
   default     = null
 }
 

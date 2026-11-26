@@ -28,9 +28,3 @@ variable "username" {
   description = "Username pattern for the ACL entry."
   type        = string
 }
-
-variable "acl_id" {
-  description = "Kafka ACL ID."
-  type        = string
-  default     = null
-}

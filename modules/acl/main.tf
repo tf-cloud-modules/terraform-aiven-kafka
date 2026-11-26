@@ -5,5 +5,4 @@ resource "aiven_kafka_acl" "this" {
   topic        = var.topic
   permission   = var.permission
   username     = var.username
-  acl_id       = var.acl_id
 }

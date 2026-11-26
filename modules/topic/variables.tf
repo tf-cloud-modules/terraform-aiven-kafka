@@ -29,6 +29,18 @@ variable "topic_name" {
   type        = string
 }
 
+variable "topic_description" {
+  description = "Topic description."
+  type        = string
+  default     = null
+}
+
+variable "owner_user_group_id" {
+  description = "The user group that owns the topic."
+  type        = string
+  default     = null
+}
+
 variable "termination_protection" {
   description = "Prevents the service from being deleted."
   type        = bool
@@ -50,6 +62,12 @@ variable "compression_type" {
 variable "delete_retention_ms" {
   description = "delete.retention.ms value."
   type        = string
+  default     = null
+}
+
+variable "diskless_enable" {
+  description = "diskless.enable value."
+  type        = bool
   default     = null
 }
 
@@ -77,6 +95,18 @@ variable "index_interval_bytes" {
   default     = null
 }
 
+variable "local_retention_bytes" {
+  description = "local.retention.bytes value."
+  type        = string
+  default     = null
+}
+
+variable "local_retention_ms" {
+  description = "local.retention.ms value."
+  type        = string
+  default     = null
+}
+
 variable "max_compaction_lag_ms" {
   description = "max.compaction.lag.ms value."
   type        = string
@@ -96,13 +126,25 @@ variable "message_downconversion_enable" {
 }
 
 variable "message_format_version" {
-  description = "message.format.version value."
+  description = "Deprecated in Kafka 4.0 and ignored by Aiven; do not set when using Kafka 4.x."
+  type        = string
+  default     = null
+}
+
+variable "message_timestamp_after_max_ms" {
+  description = "message.timestamp.after.max.ms value."
+  type        = string
+  default     = null
+}
+
+variable "message_timestamp_before_max_ms" {
+  description = "message.timestamp.before.max.ms value."
   type        = string
   default     = null
 }
 
 variable "message_timestamp_difference_max_ms" {
-  description = "message.timestamp.difference.max.ms value."
+  description = "message.timestamp.difference.max.ms value. For Kafka 4.x, use message_timestamp_before_max_ms and message_timestamp_after_max_ms instead."
   type        = string
   default     = null
 }
@@ -133,6 +175,12 @@ variable "min_insync_replicas" {
 
 variable "preallocate" {
   description = "preallocate value."
+  type        = bool
+  default     = null
+}
+
+variable "remote_storage_enable" {
+  description = "remote.storage.enable value."
   type        = bool
   default     = null
 }

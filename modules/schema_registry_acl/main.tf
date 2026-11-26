@@ -5,5 +5,4 @@ resource "aiven_kafka_schema_registry_acl" "this" {
   permission   = var.permission
   resource     = var.resource
   username     = var.username
-  acl_id       = var.acl_id
 }

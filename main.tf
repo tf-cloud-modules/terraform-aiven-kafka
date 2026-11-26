@@ -1,10 +1,11 @@
 resource "aiven_kafka" "this" {
   count                   = var.create ? 1 : 0
   cloud_name              = var.cloud_name
+  cmk_id                  = var.cmk_id
   default_acl             = var.default_acl
   karapace                = var.karapace
-  maintenance_window_dow  = var.maintenance_window_dow
-  maintenance_window_time = var.maintenance_window_time
+  maintenance_window_dow  = startswith(var.plan, "developer-") ? null : var.maintenance_window_dow
+  maintenance_window_time = startswith(var.plan, "developer-") ? null : var.maintenance_window_time
   plan                    = var.plan
   project                 = var.project
   project_vpc_id          = var.project_vpc_id
@@ -18,6 +19,7 @@ resource "aiven_kafka" "this" {
     kafka_rest      = var.kafka_rest
     kafka_version   = var.kafka_version
     schema_registry = var.schema_registry
+    service_log     = var.service_log
 
     dynamic "ip_filter_object" {
       for_each = var.ip_filter_object
@@ -53,6 +55,13 @@ resource "aiven_kafka" "this" {
       compression_type                                           = var.compression_type
       connections_max_idle_ms                                    = var.connections_max_idle_ms
       default_replication_factor                                 = var.default_replication_factor
+      group_consumer_heartbeat_interval_ms                       = var.group_consumer_heartbeat_interval_ms
+      group_consumer_max_heartbeat_interval_ms                   = var.group_consumer_max_heartbeat_interval_ms
+      group_consumer_max_session_timeout_ms                      = var.group_consumer_max_session_timeout_ms
+      group_consumer_min_heartbeat_interval_ms                   = var.group_consumer_min_heartbeat_interval_ms
+      group_consumer_min_session_timeout_ms                      = var.group_consumer_min_session_timeout_ms
+      group_consumer_session_timeout_ms                          = var.group_consumer_session_timeout_ms
+      group_coordinator_rebalance_protocols                      = var.group_coordinator_rebalance_protocols
       group_initial_rebalance_delay_ms                           = var.group_initial_rebalance_delay_ms
       group_max_session_timeout_ms                               = var.group_max_session_timeout_ms
       group_min_session_timeout_ms                               = var.group_min_session_timeout_ms
@@ -65,10 +74,14 @@ resource "aiven_kafka" "this" {
       log_flush_interval_ms                                      = var.log_flush_interval_ms
       log_index_interval_bytes                                   = var.log_index_interval_bytes
       log_index_size_max_bytes                                   = var.log_index_size_max_bytes
-      log_message_downconversion_enable                          = var.log_message_downconversion_enable
+      log_local_retention_bytes                                  = var.log_local_retention_bytes
+      log_local_retention_ms                                     = var.log_local_retention_ms
+      log_message_downconversion_enable                          = startswith(var.plan, "developer-") ? null : var.log_message_downconversion_enable
+      log_message_timestamp_after_max_ms                         = var.log_message_timestamp_after_max_ms
+      log_message_timestamp_before_max_ms                        = var.log_message_timestamp_before_max_ms
       log_message_timestamp_difference_max_ms                    = var.log_message_timestamp_difference_max_ms
       log_message_timestamp_type                                 = var.log_message_timestamp_type
-      log_preallocate                                            = var.log_preallocate
+      log_preallocate                                            = startswith(var.plan, "developer-") ? null : var.log_preallocate
       log_retention_bytes                                        = var.log_retention_bytes
       log_retention_hours                                        = var.log_retention_hours
       log_retention_ms                                           = var.log_retention_ms
@@ -85,7 +98,12 @@ resource "aiven_kafka" "this" {
       producer_purgatory_purge_interval_requests                 = var.producer_purgatory_purge_interval_requests
       replica_fetch_max_bytes                                    = var.replica_fetch_max_bytes
       replica_fetch_response_max_bytes                           = var.replica_fetch_response_max_bytes
+      sasl_oauthbearer_expected_audience                         = var.sasl_oauthbearer_expected_audience
+      sasl_oauthbearer_expected_issuer                           = var.sasl_oauthbearer_expected_issuer
+      sasl_oauthbearer_jwks_endpoint_url                         = var.sasl_oauthbearer_jwks_endpoint_url
+      sasl_oauthbearer_sub_claim_name                            = var.sasl_oauthbearer_sub_claim_name
       socket_request_max_bytes                                   = var.socket_request_max_bytes
+      transaction_partition_verification_enable                  = startswith(var.plan, "developer-") ? null : var.transaction_partition_verification_enable
       transaction_remove_expired_transaction_cleanup_interval_ms = var.transaction_remove_expired_transaction_cleanup_interval_ms
       transaction_state_log_segment_bytes                        = var.transaction_state_log_segment_bytes
     }
@@ -107,8 +125,10 @@ resource "aiven_kafka" "this" {
         consumer_max_poll_records               = lookup(kafka_connect_config.value, "consumer_max_poll_records", null)
         offset_flush_interval_ms                = lookup(kafka_connect_config.value, "offset_flush_interval_ms", null)
         offset_flush_timeout_ms                 = lookup(kafka_connect_config.value, "offset_flush_timeout_ms", null)
+        prefer_ipv6_address_enable              = lookup(kafka_connect_config.value, "prefer_ipv6_address_enable", null)
         producer_compression_type               = lookup(kafka_connect_config.value, "producer_compression_type", null)
         producer_max_request_size               = lookup(kafka_connect_config.value, "producer_max_request_size", null)
+        scheduled_rebalance_max_delay_ms        = lookup(kafka_connect_config.value, "scheduled_rebalance_max_delay_ms", null)
         session_timeout_ms                      = lookup(kafka_connect_config.value, "session_timeout_ms", null)
       }
     }
@@ -116,20 +136,30 @@ resource "aiven_kafka" "this" {
     dynamic "kafka_rest_config" {
       for_each = var.kafka_rest_config
       content {
-        consumer_enable_auto_commit  = lookup(kafka_rest_config.value, "consumer_enable_auto_commit", null)
-        consumer_request_max_bytes   = lookup(kafka_rest_config.value, "consumer_request_max_bytes", null)
-        consumer_request_timeout_ms  = lookup(kafka_rest_config.value, "consumer_request_timeout_ms", null)
-        producer_acks                = lookup(kafka_rest_config.value, "producer_acks", null)
-        producer_linger_ms           = lookup(kafka_rest_config.value, "producer_linger_ms", null)
-        simpleconsumer_pool_size_max = lookup(kafka_rest_config.value, "simpleconsumer_pool_size_max", null)
+        consumer_enable_auto_commit      = lookup(kafka_rest_config.value, "consumer_enable_auto_commit", null)
+        consumer_idle_disconnect_timeout = lookup(kafka_rest_config.value, "consumer_idle_disconnect_timeout", null)
+        consumer_request_max_bytes       = lookup(kafka_rest_config.value, "consumer_request_max_bytes", null)
+        consumer_request_timeout_ms      = lookup(kafka_rest_config.value, "consumer_request_timeout_ms", null)
+        name_strategy                    = lookup(kafka_rest_config.value, "name_strategy", null)
+        name_strategy_validation         = lookup(kafka_rest_config.value, "name_strategy_validation", null)
+        producer_acks                    = lookup(kafka_rest_config.value, "producer_acks", null)
+        producer_linger_ms               = lookup(kafka_rest_config.value, "producer_linger_ms", null)
+        producer_max_request_size        = lookup(kafka_rest_config.value, "producer_max_request_size", null)
+        simpleconsumer_pool_size_max     = lookup(kafka_rest_config.value, "simpleconsumer_pool_size_max", null)
       }
     }
 
     dynamic "schema_registry_config" {
       for_each = var.schema_registry_config
       content {
-        leader_eligibility = lookup(schema_registry_config.value, "leader_eligibility", null)
-        topic_name         = lookup(schema_registry_config.value, "topic_name", null)
+        leader_eligibility                      = lookup(schema_registry_config.value, "leader_eligibility", null)
+        retriable_errors_silenced               = lookup(schema_registry_config.value, "retriable_errors_silenced", null)
+        sasl_oauthbearer_authentication_enabled = lookup(schema_registry_config.value, "sasl_oauthbearer_authentication_enabled", null)
+        sasl_oauthbearer_authorization_enabled  = lookup(schema_registry_config.value, "sasl_oauthbearer_authorization_enabled", null)
+        sasl_oauthbearer_method_roles           = lookup(schema_registry_config.value, "sasl_oauthbearer_method_roles", null)
+        sasl_oauthbearer_roles_claim_path       = lookup(schema_registry_config.value, "sasl_oauthbearer_roles_claim_path", null)
+        schema_reader_strict_mode               = lookup(schema_registry_config.value, "schema_reader_strict_mode", null)
+        topic_name                              = lookup(schema_registry_config.value, "topic_name", null)
       }
     }
   }

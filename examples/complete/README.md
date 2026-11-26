@@ -6,7 +6,6 @@ Configuration in this directory creates an Aiven Kafka cluster with following fe
 - Aiven Kafka User
 - Aiven Kafka Topic 
 - Aiven Kafka ACL
-- Aiven Kafka Connect
 - Aiven Kafka Schema
 - Aiven Kafka Schema Configuration
 - Aiven Kafka ACL For Schema Registry
@@ -21,13 +20,24 @@ $ terraform plan
 $ terraform apply
 ```
 
-Note that this example may create resources which cost money. Run `terraform destroy` when you don't need these resources.
+This example uses Kafka `4.2` on the Aiven Kafka Developer plan `developer-2-1d` in `do-fra`. Aiven's published Developer-tier version matrix lists `3.9`, `4.1`, and `4.2` (not `4.3`). Developer-tier pricing starts at $35 USD/month for one-day retention and varies by region; review the current estimate in Aiven before applying. The example uses replication factor 1, which is the Developer-tier limit. Plan and region availability may vary by project.
+
+Kafka Connect is intentionally not enabled here: Aiven rejects `kafka_connect=true` for this plan. The `connector` submodule can be used with a separately provisioned, compatible Kafka Connect service; that service is not created by this example and may add cost.
+
+The example does not define a maintenance window. The module defaults both inputs to `null` and always omits them for `developer-*` plans, even if explicitly set, because Aiven rejects maintenance-window settings on Developer tier.
+
+The module also omits `log.message.downconversion.enable`, `log.preallocate`, and `transaction.partition.verification.enable` for Developer plans. These broker settings are not part of Aiven's published Developer-tier configuration matrix.
+
+Run `terraform destroy` when you don't need these resources.
 
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | = 4.66.0 |
 
 ## Providers
 
@@ -36,9 +46,8 @@ No providers.
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_acl"></a> [acl](#module\_acl) | ../../modules/acl | n/a |
-| <a name="module_connector"></a> [connector](#module\_connector) | ../../modules/connector | n/a |
 | <a name="module_kafka"></a> [kafka](#module\_kafka) | ../.. | n/a |
 | <a name="module_schema"></a> [schema](#module\_schema) | ../../modules/schema | n/a |
 | <a name="module_schema_configuration"></a> [schema\_configuration](#module\_schema\_configuration) | ../../modules/schema_configuration | n/a |
@@ -53,7 +62,7 @@ No resources.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_project"></a> [project](#input\_project) | Aiven Cloud Project Name. | `string` | n/a | yes |
 
 ## Outputs
