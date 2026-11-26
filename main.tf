@@ -76,12 +76,12 @@ resource "aiven_kafka" "this" {
       log_index_size_max_bytes                                   = var.log_index_size_max_bytes
       log_local_retention_bytes                                  = var.log_local_retention_bytes
       log_local_retention_ms                                     = var.log_local_retention_ms
-      log_message_downconversion_enable                          = var.log_message_downconversion_enable
+      log_message_downconversion_enable                          = startswith(var.plan, "developer-") ? null : var.log_message_downconversion_enable
       log_message_timestamp_after_max_ms                         = var.log_message_timestamp_after_max_ms
       log_message_timestamp_before_max_ms                        = var.log_message_timestamp_before_max_ms
       log_message_timestamp_difference_max_ms                    = var.log_message_timestamp_difference_max_ms
       log_message_timestamp_type                                 = var.log_message_timestamp_type
-      log_preallocate                                            = var.log_preallocate
+      log_preallocate                                            = startswith(var.plan, "developer-") ? null : var.log_preallocate
       log_retention_bytes                                        = var.log_retention_bytes
       log_retention_hours                                        = var.log_retention_hours
       log_retention_ms                                           = var.log_retention_ms
@@ -103,7 +103,7 @@ resource "aiven_kafka" "this" {
       sasl_oauthbearer_jwks_endpoint_url                         = var.sasl_oauthbearer_jwks_endpoint_url
       sasl_oauthbearer_sub_claim_name                            = var.sasl_oauthbearer_sub_claim_name
       socket_request_max_bytes                                   = var.socket_request_max_bytes
-      transaction_partition_verification_enable                  = var.transaction_partition_verification_enable
+      transaction_partition_verification_enable                  = startswith(var.plan, "developer-") ? null : var.transaction_partition_verification_enable
       transaction_remove_expired_transaction_cleanup_interval_ms = var.transaction_remove_expired_transaction_cleanup_interval_ms
       transaction_state_log_segment_bytes                        = var.transaction_state_log_segment_bytes
     }

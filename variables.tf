@@ -99,9 +99,9 @@ variable "kafka_rest" {
 }
 
 variable "kafka_version" {
-  description = "Kafka major version. Defaults to 4.3, the current Aiven default for new services. Set the existing service version explicitly before upgrading this module to avoid an unintended version change."
+  description = "Kafka major version. Defaults to 4.2, the latest version in Aiven's published Developer-tier matrix. Version 4.3 is not listed as supported for Developer plans. Set the existing service version explicitly before upgrading this module to avoid an unintended version change."
   type        = string
-  default     = "4.3"
+  default     = "4.2"
 }
 
 variable "schema_registry" {
@@ -340,9 +340,9 @@ variable "log_local_retention_ms" {
 }
 
 variable "log_message_downconversion_enable" {
-  description = "log.message.downconversion.enable"
+  description = "log.message.downconversion.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting."
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "log_message_timestamp_after_max_ms" {
@@ -370,9 +370,9 @@ variable "log_message_timestamp_type" {
 }
 
 variable "log_preallocate" {
-  description = "log.preallocate"
+  description = "log.preallocate. Omitted for Aiven Kafka Developer plans, which do not support this setting."
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "log_retention_bytes" {
@@ -502,9 +502,9 @@ variable "socket_request_max_bytes" {
 }
 
 variable "transaction_partition_verification_enable" {
-  description = "transaction.partition.verification.enable"
+  description = "transaction.partition.verification.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting."
   type        = bool
-  default     = false
+  default     = null
 }
 
 variable "transaction_remove_expired_transaction_cleanup_interval_ms" {

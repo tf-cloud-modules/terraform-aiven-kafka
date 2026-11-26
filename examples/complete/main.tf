@@ -4,6 +4,7 @@ module "kafka" {
   service_name    = "test"
   schema_registry = true
   plan            = "developer-2-1d"
+  kafka_version   = "4.2"
   tags = [
     {
       key   = "env"

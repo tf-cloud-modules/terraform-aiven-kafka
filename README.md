@@ -16,11 +16,11 @@ module "kafka" {
 
 ## Kafka version and upgrades
 
-New services default to Kafka `4.3` on Aiven's Developer tier (`developer-2-1d`) in `do-fra`. The Developer tier is a paid, limited-capacity tier; Aiven lists it from $35 USD/month for one-day retention, with price varying by region and retention. Review the current Aiven estimate before applying. The Developer tier has a replication factor of 1; the complete example uses that limit.
+New services default to Kafka `4.2` on Aiven's Developer tier (`developer-2-1d`) in `do-fra`. Aiven's published Developer-tier version matrix lists `3.9`, `4.1`, and `4.2`; Kafka `4.3` is not listed for this tier. The Developer tier is a paid, limited-capacity tier; Aiven lists it from $35 USD/month for one-day retention, with price varying by region and retention. Review the current Aiven estimate before applying. The Developer tier has a replication factor of 1; the complete example uses that limit.
 
 Kafka Connect is not enabled by default or in the complete example: Aiven rejects `kafka_connect=true` for the Developer plan. Aiven offers Kafka Connect as a separately billed service; the `connector` submodule requires a compatible Kafka Connect service to be provisioned separately and is not part of the complete example.
 
-Maintenance windows are unset by default and always omitted by the module for `developer-*` plans, even if the inputs are set: Aiven rejects these fields for Developer tier. These settings can be configured only for a plan that supports them.
+Maintenance windows are unset by default and always omitted by the module for `developer-*` plans, even if the inputs are set: Aiven rejects these fields for Developer tier. The broker options `log.message.downconversion.enable`, `log.preallocate`, and `transaction.partition.verification.enable` are likewise omitted on Developer plans. These settings can be configured only for a plan that supports them.
 
 These defaults also affect existing services that do not set `kafka_version`, `plan`, or `cloud_name` explicitly. Review the Terraform plan carefully: changing plan or cloud can change service capacity, incur charges, and trigger a service migration. Set all three inputs to the current service values before upgrading the module if you want to defer these changes. Aiven plan and region availability can vary by project; select values available to your project.
 
@@ -82,7 +82,7 @@ No modules.
 | <a name="input_kafka_connect_config"></a> [kafka\_connect\_config](#input\_kafka\_connect\_config) | Kafka Connect configuration values. | `list(any)` | `[]` | no |
 | <a name="input_kafka_rest"></a> [kafka\_rest](#input\_kafka\_rest) | Enable Kafka-REST service. | `bool` | `false` | no |
 | <a name="input_kafka_rest_config"></a> [kafka\_rest\_config](#input\_kafka\_rest\_config) | Kafka REST configuration. | `list(any)` | `[]` | no |
-| <a name="input_kafka_version"></a> [kafka\_version](#input\_kafka\_version) | Kafka major version. Defaults to 4.3, the current Aiven default for new services. Set the existing service version explicitly before upgrading this module to avoid an unintended version change. | `string` | `"4.3"` | no |
+| <a name="input_kafka_version"></a> [kafka\_version](#input\_kafka\_version) | Kafka major version. Defaults to 4.2, the latest version in Aiven's published Developer-tier matrix. Version 4.3 is not listed as supported for Developer plans. Set the existing service version explicitly before upgrading this module to avoid an unintended version change. | `string` | `"4.2"` | no |
 | <a name="input_karapace"></a> [karapace](#input\_karapace) | Switch the service to use Karapace for schema registry and REST proxy. | `bool` | `false` | no |
 | <a name="input_log_cleaner_delete_retention_ms"></a> [log\_cleaner\_delete\_retention\_ms](#input\_log\_cleaner\_delete\_retention\_ms) | log.cleaner.delete.retention.ms | `number` | `null` | no |
 | <a name="input_log_cleaner_max_compaction_lag_ms"></a> [log\_cleaner\_max\_compaction\_lag\_ms](#input\_log\_cleaner\_max\_compaction\_lag\_ms) | log.cleaner.max.compaction.lag.ms | `number` | `null` | no |
@@ -95,12 +95,12 @@ No modules.
 | <a name="input_log_index_size_max_bytes"></a> [log\_index\_size\_max\_bytes](#input\_log\_index\_size\_max\_bytes) | log.index.size.max.bytes | `number` | `null` | no |
 | <a name="input_log_local_retention_bytes"></a> [log\_local\_retention\_bytes](#input\_log\_local\_retention\_bytes) | log.local.retention.bytes | `number` | `null` | no |
 | <a name="input_log_local_retention_ms"></a> [log\_local\_retention\_ms](#input\_log\_local\_retention\_ms) | log.local.retention.ms | `number` | `null` | no |
-| <a name="input_log_message_downconversion_enable"></a> [log\_message\_downconversion\_enable](#input\_log\_message\_downconversion\_enable) | log.message.downconversion.enable | `bool` | `false` | no |
+| <a name="input_log_message_downconversion_enable"></a> [log\_message\_downconversion\_enable](#input\_log\_message\_downconversion\_enable) | log.message.downconversion.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting. | `bool` | `null` | no |
 | <a name="input_log_message_timestamp_after_max_ms"></a> [log\_message\_timestamp\_after\_max\_ms](#input\_log\_message\_timestamp\_after\_max\_ms) | log.message.timestamp.after.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_before_max_ms"></a> [log\_message\_timestamp\_before\_max\_ms](#input\_log\_message\_timestamp\_before\_max\_ms) | log.message.timestamp.before.max.ms | `number` | `null` | no |
 | <a name="input_log_message_timestamp_difference_max_ms"></a> [log\_message\_timestamp\_difference\_max\_ms](#input\_log\_message\_timestamp\_difference\_max\_ms) | log.message.timestamp.difference.max.ms. Removed in Kafka 4.0; use log\_message\_timestamp\_before\_max\_ms and log\_message\_timestamp\_after\_max\_ms instead. | `number` | `null` | no |
 | <a name="input_log_message_timestamp_type"></a> [log\_message\_timestamp\_type](#input\_log\_message\_timestamp\_type) | log.message.timestamp.type. When unset, Aiven uses its default. | `string` | `null` | no |
-| <a name="input_log_preallocate"></a> [log\_preallocate](#input\_log\_preallocate) | log.preallocate | `bool` | `false` | no |
+| <a name="input_log_preallocate"></a> [log\_preallocate](#input\_log\_preallocate) | log.preallocate. Omitted for Aiven Kafka Developer plans, which do not support this setting. | `bool` | `null` | no |
 | <a name="input_log_retention_bytes"></a> [log\_retention\_bytes](#input\_log\_retention\_bytes) | log.retention.bytes | `number` | `null` | no |
 | <a name="input_log_retention_hours"></a> [log\_retention\_hours](#input\_log\_retention\_hours) | log.retention.hours | `number` | `null` | no |
 | <a name="input_log_retention_ms"></a> [log\_retention\_ms](#input\_log\_retention\_ms) | log.retention.ms | `number` | `null` | no |
@@ -147,7 +147,7 @@ No modules.
 | <a name="input_static_ips"></a> [static\_ips](#input\_static\_ips) | Static IPs that are going to be associated with this service. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | List of the service tags. | `list(any)` | `[]` | no |
 | <a name="input_termination_protection"></a> [termination\_protection](#input\_termination\_protection) | Prevents the service from being deleted. | `bool` | `false` | no |
-| <a name="input_transaction_partition_verification_enable"></a> [transaction\_partition\_verification\_enable](#input\_transaction\_partition\_verification\_enable) | transaction.partition.verification.enable | `bool` | `false` | no |
+| <a name="input_transaction_partition_verification_enable"></a> [transaction\_partition\_verification\_enable](#input\_transaction\_partition\_verification\_enable) | transaction.partition.verification.enable. Omitted for Aiven Kafka Developer plans, which do not support this setting. | `bool` | `null` | no |
 | <a name="input_transaction_remove_expired_transaction_cleanup_interval_ms"></a> [transaction\_remove\_expired\_transaction\_cleanup\_interval\_ms](#input\_transaction\_remove\_expired\_transaction\_cleanup\_interval\_ms) | transaction.remove.expired.transaction.cleanup.interval.ms | `number` | `null` | no |
 | <a name="input_transaction_state_log_segment_bytes"></a> [transaction\_state\_log\_segment\_bytes](#input\_transaction\_state\_log\_segment\_bytes) | transaction.state.log.segment.bytes | `number` | `null` | no |
 
