@@ -16,7 +16,9 @@ module "kafka" {
 
 ## Kafka version and upgrades
 
-New services default to Kafka `4.3` and plan `startup-4`, which Aiven uses for Kafka 3.9 and later. These module defaults also affect existing services that do not set `kafka_version` or `plan` explicitly: review the Terraform plan before applying. To defer a change, set both inputs to the values currently used by the service.
+New services default to Kafka `4.3` on Aiven's Developer tier (`developer-2-1d`) in `do-fra`. The Developer tier is a paid, limited-capacity tier; Aiven lists it from $35 USD/month for one-day retention, with price varying by region and retention. Kafka Connect is billed separately (the complete example enables it), so review the current Aiven estimate before applying. The Developer tier has a replication factor of 1; the complete example uses that limit.
+
+These defaults also affect existing services that do not set `kafka_version`, `plan`, or `cloud_name` explicitly. Review the Terraform plan carefully: changing plan or cloud can change service capacity, incur charges, and trigger a service migration. Set all three inputs to the current service values before upgrading the module if you want to defer these changes. Aiven plan and region availability can vary by project; select values available to your project.
 
 Kafka 4.x uses KRaft. Aiven does not support upgrading a ZooKeeper service on Kafka 3.8 or earlier directly to Kafka 4.x. Upgrade to 3.9 and complete the KRaft migration first; rollback to ZooKeeper is not possible after migration. This module update does not run an upgrade or migration.
 
@@ -51,7 +53,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_auto_create_topics_enable"></a> [auto\_create\_topics\_enable](#input\_auto\_create\_topics\_enable) | auto.create.topics.enable | `bool` | `false` | no |
-| <a name="input_cloud_name"></a> [cloud\_name](#input\_cloud\_name) | Defines where the cloud provider and region where the service is hosted in. | `string` | `"aws-us-east-1"` | no |
+| <a name="input_cloud_name"></a> [cloud\_name](#input\_cloud\_name) | Cloud and region where the service is hosted. The default do-fra region is used with the Aiven Kafka Developer tier; set a region available to your project if needed. | `string` | `"do-fra"` | no |
 | <a name="input_cmk_id"></a> [cmk\_id](#input\_cmk\_id) | Customer Managed Key ID to associate with the service for encryption at rest. | `string` | `null` | no |
 | <a name="input_compression_type"></a> [compression\_type](#input\_compression\_type) | compression.type. When unset, Aiven uses its default. | `string` | `null` | no |
 | <a name="input_connections_max_idle_ms"></a> [connections\_max\_idle\_ms](#input\_connections\_max\_idle\_ms) | connections.max.idle.ms | `number` | `null` | no |
@@ -110,7 +112,7 @@ No modules.
 | <a name="input_min_insync_replicas"></a> [min\_insync\_replicas](#input\_min\_insync\_replicas) | min.insync.replicas | `number` | `null` | no |
 | <a name="input_num_partitions"></a> [num\_partitions](#input\_num\_partitions) | num.partitions | `number` | `null` | no |
 | <a name="input_offsets_retention_minutes"></a> [offsets\_retention\_minutes](#input\_offsets\_retention\_minutes) | offsets.retention.minutes | `number` | `null` | no |
-| <a name="input_plan"></a> [plan](#input\_plan) | Defines what kind of computing resources are allocated for the service. The default startup-4 plan supports Kafka 3.9 and later. | `string` | `"startup-4"` | no |
+| <a name="input_plan"></a> [plan](#input\_plan) | Aiven Kafka service plan. The default developer-2-1d plan is the Developer tier with one-day retention; pricing varies by cloud and region and starts at $35 USD/month. Kafka Connect is billed separately. | `string` | `"developer-2-1d"` | no |
 | <a name="input_private_access_prometheus"></a> [private\_access\_prometheus](#input\_private\_access\_prometheus) | Allow clients to connect to prometheus with a DNS name that always resolves to the service's private IP addresses. | `bool` | `false` | no |
 | <a name="input_privatelink_jolokia"></a> [privatelink\_jolokia](#input\_privatelink\_jolokia) | Enable jolokia. | `bool` | `false` | no |
 | <a name="input_privatelink_kafka"></a> [privatelink\_kafka](#input\_privatelink\_kafka) | Enable kafka. | `bool` | `false` | no |

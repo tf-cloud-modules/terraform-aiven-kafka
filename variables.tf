@@ -5,9 +5,9 @@ variable "create" {
 }
 
 variable "cloud_name" {
-  description = "Defines where the cloud provider and region where the service is hosted in."
+  description = "Cloud and region where the service is hosted. The default do-fra region is used with the Aiven Kafka Developer tier; set a region available to your project if needed."
   type        = string
-  default     = "aws-us-east-1"
+  default     = "do-fra"
 }
 
 variable "cmk_id" {
@@ -29,9 +29,9 @@ variable "maintenance_window_time" {
 }
 
 variable "plan" {
-  description = "Defines what kind of computing resources are allocated for the service. The default startup-4 plan supports Kafka 3.9 and later."
+  description = "Aiven Kafka service plan. The default developer-2-1d plan is the Developer tier with one-day retention; pricing varies by cloud and region and starts at $35 USD/month. Kafka Connect is billed separately."
   type        = string
-  default     = "startup-4"
+  default     = "developer-2-1d"
 }
 
 variable "project" {

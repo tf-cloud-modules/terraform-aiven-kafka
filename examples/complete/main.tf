@@ -4,7 +4,7 @@ module "kafka" {
   service_name    = "test"
   kafka_connect   = true
   schema_registry = true
-  plan            = "business-4"
+  plan            = "developer-2-1d"
   tags = [
     {
       key   = "env"
@@ -26,7 +26,7 @@ module "topic" {
   service_name = module.kafka.service_name
   topic_name   = "test"
   partitions   = 5
-  replication  = 3
+  replication  = 1
 }
 
 module "acl" {

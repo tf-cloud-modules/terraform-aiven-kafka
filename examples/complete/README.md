@@ -21,7 +21,9 @@ $ terraform plan
 $ terraform apply
 ```
 
-Note that this example may create resources which cost money. Run `terraform destroy` when you don't need these resources.
+This example uses the Aiven Kafka Developer plan `developer-2-1d` in `do-fra` and enables Kafka Connect, which is billed separately. Developer-tier pricing starts at $35 USD/month for one-day retention and varies by region; review the current estimate in Aiven before applying. The example uses replication factor 1, which is the Developer-tier limit. Plan and region availability may vary by project.
+
+Run `terraform destroy` when you don't need these resources.
 
 
 <!-- BEGIN_TF_DOCS -->
