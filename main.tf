@@ -4,8 +4,8 @@ resource "aiven_kafka" "this" {
   cmk_id                  = var.cmk_id
   default_acl             = var.default_acl
   karapace                = var.karapace
-  maintenance_window_dow  = var.maintenance_window_dow
-  maintenance_window_time = var.maintenance_window_time
+  maintenance_window_dow  = startswith(var.plan, "developer-") ? null : var.maintenance_window_dow
+  maintenance_window_time = startswith(var.plan, "developer-") ? null : var.maintenance_window_time
   plan                    = var.plan
   project                 = var.project
   project_vpc_id          = var.project_vpc_id
