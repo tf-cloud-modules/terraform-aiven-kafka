@@ -36,8 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `README.ru.md`.
 
 ### Changed
-- Raise aiven/aiven provider constraint to `>= 4.64.0, < 5.0.0` in the root module and all
-  submodules (validated against 4.66.0).
+- Pin aiven/aiven to `= 4.66.0` in the root module, all submodules and the complete example.
 - **Breaking:** remove the `acl_id` variable from the `acl` and `schema_registry_acl`
   submodules. The provider marks `acl_id` as read-only since v4, so setting it fails with
   "Invalid Configuration for Read-Only Attribute".

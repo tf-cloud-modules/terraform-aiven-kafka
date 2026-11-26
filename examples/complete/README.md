@@ -27,7 +27,10 @@ Note that this example may create resources which cost money. Run `terraform des
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | = 4.66.0 |
 
 ## Providers
 

@@ -28,7 +28,7 @@ Kafka 4.x работает в режиме KRaft. Aiven не поддержив�
 | Name | Version |
 | ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | >= 4.64.0, < 5.0.0 |
+| <a name="requirement_aiven"></a> [aiven](#requirement\_aiven) | = 4.66.0 |
 
 ## Providers
 
@@ -44,7 +44,7 @@ No modules.
 
 | Name | Type |
 | ---- | ---- |
-| [aiven_kafka.this](https://registry.terraform.io/providers/aiven/aiven/latest/docs/resources/kafka) | resource |
+| [aiven_kafka.this](https://registry.terraform.io/providers/aiven/aiven/4.66.0/docs/resources/kafka) | resource |
 
 ## Inputs
 
